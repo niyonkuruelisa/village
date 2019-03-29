@@ -55,77 +55,77 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                 </div>
                 <!-- end page title end breadcrumb -->
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
+                <div class="col-lg-12">
+                    <div class="portlet">
+                        <div class="portlet-heading bg-inverse">
+                            <h3 class="portlet-title">
+                                IMISANZU YATANZWE
+                            </h3>
+                            <div class="portlet-widgets">
+                                <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                <span class="divider"></span>
+                                <a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple"><i class="ion-minus-round"></i></a>
+                                
                             </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Leaders/Agents</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                    </div>
+                        <div id="bg-purple" class="panel-collapse collapse in">
+                            <div class="portlet-body">
+                            <div class="table-responsive">
+                                <table id="datatable-responsive" class="table table-striped table-hover dt-responsive ">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>AMAFARANGA</th>
+                                            <th>UKWEZI</th>
+                                            <th>IGIHE YISHYURIWE</th>
+                                            <th>HAKORESHEJWE</th>
+                                            <th>TELEFONE</th>
+                                            <th>STATUS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 0;
+                                        foreach ($transactions as $transaction) {
+                                            $i++;
+                                            $payment            = $transaction["payment"];
+                                            $payment_month         = $transaction["Month"];
+                                            $payment_datetime         = $transaction["updated_at"];
+                                            $method            = $transaction["payment_method"];
+                                            $phone   = $transaction["phone_number"];
+                                            $status   = $transaction["status"];
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Clients</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Villages</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Pending Withdrow</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
+                                            if($status == 'Success'){
+                                                $label = "label-success";
+                                                
+                                            }else if($status == 'Failed'){
+                                                $label = "label-warning";
+                                            }else{
+                                                $label = "label-purple";
+                                            }
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $i;?></td>
+                                                <td><?php echo $payment;?></td>
+                                                <td><?php echo $payment_month;?></td>
+                                                <td><?php echo $payment_datetime;?></td>
+                                                <td><?php echo $method;?></td>
+                                                <td><?php echo $phone;?></td>
+                                                <td><span class="label <?php echo $label;?>"><?php echo $transaction['status'];?></span></td>
+                                            </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                </table>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-                <!-- end row -->
-                <!-- <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Total Views</h4>
-
-                            <div class="text-center">
-                                <ul class="list-inline chart-detail-list">
-                                    <li class="list-inline-item">
-                                        <h5 class="text-teal"><i class="mdi mdi-crop-square m-r-5"></i>Page Views</h5>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <h5><i class="mdi mdi-details m-r-5"></i>Visitors</h5>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="morris-bar-stacked" style="height: 280px;"></div>
-
-                        </div>
-
-                    </div> 
-                </div> -->
+                </div>
                 <!-- end row -->
                 
                 <!-- Footer -->
