@@ -1,0 +1,151 @@
+<?php require_once '../bootstrap.php';
+$credetials = isLoggedIn();
+if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $credetials[1] == '' || $credetials[2] != 1){
+  redirect($credetials[0],$credetials[1],$credetials[2]);
+}else{
+    require 'adminOperations.php';
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
+
+        <link rel="shortcut icon" href="<?php echo URLROOT?>front/images/favicon.ico">
+
+        <title>Add New Client - <?php echo SITENAME;?> - <?php echo NAMES;?>(Admin)</title>
+
+        <!-- App css -->
+        <?php require_once("../CSS.php")?>
+
+    </head>
+
+
+    <body>
+
+    <!-- Navigation Bar-->
+    <?php require_once 'nav.php';?>
+
+    <!-- End Navigation Bar-->
+
+
+        <div class="wrapper">
+            <div class="container">
+
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="btn-group pull-right">
+                                <ol class="breadcrumb hide-phone p-0 m-0">
+                                <li>
+                                        <a href="index.php">Home</a>
+                                    </li>
+                                    <li class="active">
+                                        Manage All Clients
+                                    </li>
+                                </ol>
+                            </div>
+                        <h4 class="page-title">Add New Or Update Existing Client</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title end breadcrumb -->
+                <div class="row">
+                    <div class="col-md-12 ">
+
+                    <div class="col-md-6 ">
+                                <div class="">
+                                    <div class="">
+                                        <div class="form-group m-b-20">
+                                            <label for="GroupMethod">Group Method</label>
+                                            <select id="GroupMethod" class="form-control">
+                                                <option selected="" value="Whatsapp">Whatsapp</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group m-b-20">
+                                            <label for="ContactsGroupName">Group Title</label>
+                                            <input type="text" class="form-control" id="ContactsGroupName" name="ContactsGroupName" placeholder="Enter Group Title" >
+                                        </div>
+                                        <div class="form-group m-b-20">
+                                            <label for="GroupInterests">Group  Interests</label>
+                                            <input type="email" class="form-control" id="GroupInterests" name="GroupInterests" placeholder="Enter Group Interests" >
+                                        </div>
+                                        <div class="form-group m-b-20">
+                                            <label for="GroupComment">Group Comments</label>
+                                            <input type="text" class="form-control" id="GroupComment" name="GroupComment" placeholder="Enter Group Comment" >
+                                        </div>
+                                    </div>
+                                </div> <!-- end p-20 -->
+                            </div> <!-- end col -->
+                            <div class="col-md-6 ">
+                                <div class="form-group m-b-20">
+                                    <label for="GroupProvince">Group Province</label>
+                                    <input type="text" class="form-control" id="GroupProvince" name="GroupProvince" placeholder="Enter Group Province" >
+                                    </div>
+                                    <div class="form-group m-b-20">
+                                        <label for="GroupDistrict">Group District</label>
+                                        <input type="text" class="form-control" id="GroupDistrict" name="GroupDistrict" placeholder="Enter Group District" >
+                                    </div>
+                                    <div class="form-group m-b-20">
+                                        <label for="GroupSector">Group Sector</label>
+                                        <input type="text" class="form-control" id="GroupSector" name="GroupSector" placeholder="Enter Group Sector" >
+                                    </div>
+                                    <div class="form-group m-b-20">
+                                        <label for="GroupCell">Group Cell</label>
+                                        <input type="text" class="form-control" id="GroupCell" name="GroupCell" placeholder="Enter Group Cell" >
+                                    </div>
+                                    <button type="button" class="btn btn-purple waves-effect waves-light" id="SaveContacts">Save Contacts</button>
+                                    <button type="refresh" class="btn btn-danger waves-effect waves-light" id="discardContacts">Discard</button>
+                                    
+                                </div>
+                            </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+                <!-- Footer -->
+                <footer class="footer text-right">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                © 2019 - <?php echo date("Y");?> <?php echo SITENAME;?>.
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End Footer -->
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+
+
+        <!-- jQuery  -->
+        <?php require_once("../JS.php")?>
+        <script>
+
+        jQuery(document).ready(function(){
+
+            $('.summernote').summernote({
+                height: 240,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: false                 // set focus to editable area after initializing summernote
+            });
+            
+            // Select2
+            $(".select2").select2();
+
+            $(".select2-limiting").select2({
+                maximumSelectionLength: 2
+            });
+        });
+        </script>
+    </body>
+</html>
+
+<?php $db->Disconnect();?>

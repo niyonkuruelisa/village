@@ -1,0 +1,12 @@
+# Turn Rewrite Engine On
+RewriteEngine on
+# Rewrite for FrontOperations script
+
+RewriteRule ^login/$ login.php [NC,L]
+RewriteRule ^login$ login.php [NC,L]
+RewriteRule ^signup/$ signup.php [NC,L]
+RewriteRule ^signup$ signup.php [NC,L]
+RewriteRule ^agent/addClient/$ agent/addClient.php [NC,L]
+RewriteRule ^agent/clients/$ agent/clients.php [NC,L]
+RewriteRule ^client/$ client/index.php [NC,L]
+RewriteRule ^client$ client/index.php [NC,L]
