@@ -29,6 +29,6 @@ if($credetials == null && $credetials[0] == null){
 
     $agents = $db->GetRows("SELECT `agents`.* FROM `agents`");
     $totalAgents = count($agents);
-    $transactions = $db->GetRows("SELECT `transactions`.* FROM `transactions`");
+    $transactions = $db->GetRows("SELECT * FROM `transactions`");
     
 }

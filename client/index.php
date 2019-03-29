@@ -85,7 +85,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         <select id="payment_method" class="form-control select2">
                                            
                                             <optgroup label=" Uburyo Bwo Kwishyura">
-                                                <option value="MTN">MTN Mobile Money</option>
+                                                <option value="MTN Mobile Money">MTN Mobile Money</option>
                                             </optgroup>
                                             
                                         </select>

@@ -5,6 +5,235 @@ var isValidEmail = false;
 var emailValidate = '';
 var NID = '';
 
+$('#email').keyup(function (){
+
+emailValidate = $(this).val();
+EmailValue = emailValidate;
+isValidEmail = false;
+// var re=new RegExp();
+// re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+if(emailValidate != '' && emailValidate.length > 1){
+  if(emailValidate.length > 5){
+    isValidEmail = true;
+    $('#responses').html('');
+    }
+}else{
+  $('#responses').html('');
+}
+});
+
+$('#password').keyup( function (){
+password = $(this).val();
+});
+
+$('#signIn').click(function (){
+    
+    if(isValidEmail == true){
+      if(password !=''){
+        NID = $('#NID').val();
+        console.log(emailValidate+password+NID)
+        $.ajax({
+          type: 'GET',
+          url: SITEURL+'submissions.php',
+          data: {
+            'action': 'loginSystemUser',
+            'email': emailValidate,
+            'password': password,
+            'NID': NID
+          },
+          success: function (data){
+            //console.log(data);
+            if(data == 'FalseNotExists'){
+              $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Iyi Konti Ntabwo Ifunguye. </div>');
+            }else if(data == 'trueAdmin'){
+              location.assign(SITEURL+"admin/");
+            }else if(data == 'trueAgent'){
+              location.assign(SITEURL+"agent/");
+            }
+            else if(data == 'trueClient'){
+              location.assign(SITEURL+"client/");
+            }
+          }
+        })
+      }else{
+        $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Enter Valid Password. </div>');
+      }
+    }else{
+      $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Enter Valid E-amil Address. </div>');
+    }
+  })
+  //-------------------------- End Login ----------------------------------------
+
+
+  //********************* Save a New User ************************************* */
+  var UserName        = $("#UserName").val();
+  var UserEmail       = $("#UserEmail").val();
+  var UserPhone       = $("#UserPhone").val();
+  var UserOccupation  = $("#UserOccupation").val();
+  var UserGender      = $("input[name=radioSocial]").val();
+  var UserType        = $("#UserType").val();
+
+$('#UserName').keyup(function (){
+  UserName  = $(this).val();
+    
+})
+$('#UserEmail').keyup(function (){
+  UserEmail  = $(this).val();
+    
+})
+$('#UserPhone').keyup(function (){
+  UserPhone  = $(this).val();
+    
+})
+$('#UserOccupation').keyup(function (){
+  UserOccupation  = $(this).val();
+    
+})
+$('#UserType').change('ifChanged',function (){
+  UserType  = $(this).val();
+    
+})
+$('input[name=radioSocial]').change('ifChanged',function (){
+  UserGender  = $(this).val();
+})
+$("#SaveUser").click(function (){
+  $('#UserResponses').html('<div class="progress progress-lg m-b-5"><div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div></div>');
+  var re=new RegExp();
+  re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if(UserName == '' || UserName < 3){
+    $('#UserResponses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a> User Names Must Be More Than 3 Characters Long. </div>');
+
+  }else if(re.test(UserEmail) != true || UserEmail == ''){
+    $('#UserResponses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a> Enter Valid Email Address. </div>');
+
+  }else if(UserPhone == '' || UserPhone.length < 10){
+    $('#UserResponses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a> Enter Valid Phone Number. </div>');
+
+  }else if(UserOccupation  == '' || UserOccupation.length < 3){
+    $('#UserResponses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a> User Occupation Must Be More than 3 Characters Long. </div>');
+
+  }else{
+    $('#UserResponses').html('<div class="progress progress-lg m-b-5"><div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div></div>');
+    $.ajax({
+        type: 'GET',
+        url : SITEURL+'submissions.php',
+        data:{
+          'action'        : 'saveUser',
+          'UserNames'     : UserName,
+          'UserEmail'     : UserEmail,
+          'UserOccupation': UserOccupation,
+          'UserPhone'     : UserPhone,
+          'UserGender'    : UserGender,
+          'UserType'      : UserType,
+        },
+        success : function (data){
+          console.log(data)
+          if(data == "false"){
+            $('#UserResponses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Couldn\'t Save System User , Try Again Again. </div>');
+          }else if(data == "exist"){
+            $('#UserResponses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Sytem User Is Already Exist, Check Again. </div>');
+          }else{
+            $('#UserResponsesCode').html('<h3><strong>'+data+'</strong></h3>');
+          }
+        }
+      })
+  }
+})
+var ActivateEmail                   = $("#ActivateEmail").val();
+var ActivateCode                    = $("#ActivateCode").val();
+var ActivatePassword                = $("#ActivatePassword").val();
+var ActivateConfirmPassword         = $("#ActivateConfirmPassword").val();
+var IsActivateValidEmail            = false;
+var IsActivateValidPassword         = false;
+var IsActivateValidConfirmPassword  = false;
+
+$('#ActivateEmail').keyup(function (){
+  ActivateEmail  = $(this).val();
+    
+})
+$('#ActivateCode').keyup(function (){
+  ActivateCode  = $(this).val();
+    
+})
+$('#ActivateCode').keydown(function (){
+  ActivateCode  = $(this).val();
+    
+})
+$('#ActivatePassword').keyup(function (){
+  ActivatePassword  = $(this).val();
+    
+})
+$('#ActivateConfirmPassword').keyup(function (){
+  ActivateConfirmPassword  = $(this).val();
+    
+})
+$('#ActivateButton').click(function (){
+  $('#ActiveResponse').html('');
+  ActivateEmail = $("#ActivateEmail").val();
+  ActivateCode  = $("#ActivateCode").val();
+  if(ActivateCode == '' || ActivateCode.length != 6){
+    $('#ActiveResponse').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Andika Neza Code Yibanga wahawe N\'Umuyobozi!. </div>');
+
+  }else if(ActivatePassword == '' || ActivatePassword.length < 6){
+    $('#ActiveResponse').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Umubare wibanga ugomba kuba uri hejuru y\'inyuguti esheshatu(6). </div>');
+
+  }else if(ActivatePassword != ActivateConfirmPassword || ActivateConfirmPassword == ''){
+    $('#ActiveResponse').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Umubare wibanga ntago wahuye,Gerageza Nanone. </div>');
+    $('#ActivatePassword').val("");
+    $('#ActivateConfirmPassword').val("");
+  }else{
+    $('#ActiveResponse').html('<div class="progress progress-lg m-b-5"><div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div></div>');
+    $.ajax({
+      type: 'GET',
+      url : SITEURL+'submissions.php',
+      data:{
+        'action'            : 'activateUser',
+        'ActivateEmail'     : ActivateEmail,
+        'ActivateCode'      : ActivateCode,
+        'ActivatePassword'  : ActivatePassword
+      },
+      success : function (data){
+        $('#ActiveResponse').html('')
+        if(data == "true"){
+          $('#ActiveResponse').html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Byiza!</strong><a href="#" class="alert-link"></a> Konti Yawe Yafunguwe!!. </div>');
+          location.assign(SITEURL+"login/");
+        }else if(data == "exist"){
+          console.log(data)
+          $('#ActiveResponse').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a>Nshuti Iyi konti Isanzwe Ifunguye. </div>');
+        }else if(data == "NotExist"){
+          $('#ActiveResponse').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a>Nshuti Iyi konti Ntabwo iri muri sisiteme. </div>');
+        }else{
+          console.log(data)
+          $('#ActiveResponse').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Ntibyakunze gufungura konti,Mugerageze nanone mukanya. </div>');
+
+        }
+      }
+    })
+  }
+});
+
+
+// **************************** Logout **********************
+var userId = $('#userid').val();
+$('#Logout').click(function (e){
+  userId = $('#userid').val();
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: SITEURL+'submissions.php',
+    data:{
+      "action" : "SignOut",
+      "userId" : userId
+    },
+    success: function(data){
+      if(data == "true"){
+        location.assign(SITEURL);
+      }
+    }
+  })
+})
+
 var AgentNID = ""
 var AgentNames = ""
 var AgentUsername = ""
