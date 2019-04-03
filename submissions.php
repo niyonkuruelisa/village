@@ -92,8 +92,15 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
         `created_at`, 
         `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
         ,["","$id","$payment","$payment_method","$phone_number","$Month","PENDING"])){
+            $transactionID = $db->getLastId();
 
             $ret = $function->MTNDeposit($phone_number, $payment);
+
+            $status = $ret->data->status;
+            $hash = $ret->data->hash;
+
+            //Let's update the transaction
+            $db->UpdateData("UPDATE transactions SET status = ?, token = ?, updated_at = NOW() WHERE id = ? ", [$status, $hash, $transactionID]);
 
             $response = false;
             if($ret->status){
@@ -104,8 +111,7 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
             }
 
             //TODO: Implement messages on the progress and failures
-
-            echo "$response";
+            echo $response;
     }else{
         echo "failed";
     }
