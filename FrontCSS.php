@@ -3,7 +3,7 @@
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="<?php echo URLROOT;?>front/images/apple-touch-icon.png">
-  <link rel="shortcut icon" type="<?php echo URLROOT;?>front/image/ico" href="<?php echo URLROOT;?>front/images/favicon.ico" />
+  <link rel="shortcut icon" type="<?php echo URLROOT;?>front/images/favicon.ico" href="<?php echo URLROOT;?>front/images/favicon.ico" />
   
   <!-- Plugin-CSS -->
   <link rel="<?php ?>stylesheet" href="<?php echo URLROOT;?>front/css/bootstrap.min.css">
