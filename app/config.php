@@ -6,8 +6,15 @@ define('DB_PASS','');
 define('DB_NAME','village');
 
 //App Root
-define("APPROOT",dirname(dirname(__FILE__))."/");
+define("APPROOT", dirname(dirname(__FILE__))."/");
+
 //Url Root
-define("URLROOT","http://localhost/village/");
+$host = "http://localhost/village/";
+$host = "/";
+define("URLROOT", $host);
+
 //Site Name
 define("SITENAME","E-Village");
+
+//Dates
+define("PRINTTIMESTAMP","d/m/Y h:i");

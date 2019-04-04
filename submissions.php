@@ -79,7 +79,7 @@ if(isset($_GET['action']) && $_GET['action'] == "savePayment"  && isset($_GET['p
 //-------------------- Functions ----------------------
 //savepayments
 function savePayments($payment,$payment_method,$phone_number,$Month,$id){
-    global $db;
+    global $db, $function;
     if($db->InsertData("INSERT INTO `transactions` (
         `id`, 
         `token`, 
@@ -91,8 +91,27 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
         `status`, 
         `created_at`, 
         `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
-        ,["","$id","$payment","$payment_method","$phone_number","$Month","Pending"])){
-            echo "true";
+        ,["","$id","$payment","$payment_method","$phone_number","$Month","PENDING"])){
+            $transactionID = $db->getLastId();
+
+            $ret = $function->MTNDeposit($phone_number, $payment);
+
+            $status = $ret->data->status;
+            $hash = $ret->data->hash;
+
+            //Let's update the transaction
+            $db->UpdateData("UPDATE transactions SET status = ?, token = ?, updated_at = NOW() WHERE id = ? ", [$status, $hash, $transactionID]);
+
+            $response = false;
+            if($ret->status){
+                $response = true;
+            }else{
+                $response = false;
+
+            }
+
+            //TODO: Implement messages on the progress and failures
+            echo $response;
     }else{
         echo "failed";
     }

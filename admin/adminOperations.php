@@ -13,7 +13,7 @@ if($credetials == null && $credetials[0] == null){
     $systemUsers = $db->GetRows("SELECT `system_users`.* FROM `system_users`");
     //fetching user informations
     $email  = $credetials[0];
-    $info   = $db->GetRow("SELECT `system_users`.* FROM `system_users`  WHERE `system_users`.`email` = ? ",["$email"]);
+    $info   = $db->GetRow("SELECT `system_users`.* FROM `system_users`  WHERE `system_users`.`email` = ?  ORDER BY created_at, updated_at DESC",["$email"]);
 
     define("ID",$info["user_id"]);
     define("EMAIL",$info["email"]); 

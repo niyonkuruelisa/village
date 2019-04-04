@@ -127,6 +127,10 @@ class Database{
             throw new exception($e->getMessage());
         }
     }
+
+    public function getLastId(){
+        return $this->database->lastInsertId();
+    }
 }
 //defining Database() Class instance
 $db  = new Database();
