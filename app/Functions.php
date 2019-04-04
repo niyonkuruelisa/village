@@ -215,6 +215,11 @@ class Validate{
         }
         return (object)$response;
     }
+
+    function formatPrintTimestamp($date){
+        //formats the timestamp for printing
+        return date(PRINTTIMESTAMP, strtotime($date));
+    }
 }
 $function=new Validate();
 ?>

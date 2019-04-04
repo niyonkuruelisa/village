@@ -15,3 +15,6 @@ define("URLROOT", $host);
 
 //Site Name
 define("SITENAME","E-Village");
+
+//Dates
+define("PRINTTIMESTAMP","d/m/Y h:i");
