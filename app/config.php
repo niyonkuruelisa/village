@@ -9,9 +9,9 @@ define('DB_NAME','village');
 define("APPROOT", dirname(dirname(__FILE__))."/");
 
 //Url Root
-$host = "http://localhost/village/";
+$host1 = "http://localhost/village/";
 $host = "/";
-define("URLROOT", $host);
+define("URLROOT", $host1);
 
 //Site Name
 define("SITENAME","E-Village");
