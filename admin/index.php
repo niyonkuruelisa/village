@@ -45,11 +45,11 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         <a href="index.php">Home</a>
                                     </li>
                                     <li class="active">
-                                        Posts Dashboard
+                                        Admin Dashboard
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Posts Dashboard</h4>
+                            <h4 class="page-title">Admin Dashboard</h4>
                         </div>
                     </div>
                 </div>
@@ -58,11 +58,11 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                     <div class="col-lg-3 col-md-6">
                         <div class="card-box widget-box-three">
                             <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
+                                <i class="ion-android-social"></i>
                             </div>
                             <div class="text-right">
                                 <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Leaders/Agents</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
+                                <h2 class="m-b-10"><span data-plugin="counterup"><?php echo $totalAgents;?></span></h2>
                             </div>
                         </div>
                     </div>
@@ -70,11 +70,11 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                     <div class="col-lg-3 col-md-6">
                         <div class="card-box widget-box-three">
                             <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
+                                <i class="ion-android-social"></i>
                             </div>
                             <div class="text-right">
                                 <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Clients</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
+                                <h2 class="m-b-10"><span data-plugin="counterup"><?php echo $totalClients;?></span></h2>
                             </div>
                         </div>
                     </div>
@@ -97,8 +97,8 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                 <i class="ti-layout-list-post"></i>
                             </div>
                             <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Pending Withdrow</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
+                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Pending Transactions</p>
+                                <h2 class="m-b-10"><span data-plugin="counterup"><?php echo $pendingTransaction;?></span></h2>
                             </div>
                         </div>
                     </div>

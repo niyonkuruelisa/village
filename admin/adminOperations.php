@@ -30,5 +30,8 @@ if($credetials == null && $credetials[0] == null){
     $agents = $db->GetRows("SELECT `agents`.* FROM `agents`");
     $totalAgents = count($agents);
     $transactions = $db->GetRows("SELECT * FROM `transactions`");
+    $clients = $db->GetRows("SELECT `clients`.* FROM `clients`");
+    $totalClients = count($clients);
+    $pendingTransaction = $db->GetSum("SELECT * FROM `transactions` WHERE `transactions`.`status` = ?",["Pending"]);
     
 }
