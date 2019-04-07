@@ -9,6 +9,17 @@ if(isset($_POST["action"]) && $_POST["action"] == "SignOut"){
     echo "true";
 }
 
+if(isset($_GET['action']) && $_GET['action'] == "SaveChairman" && isset($_GET['ChairmanNID']) && isset($_GET['ChairmanNames']) && isset($_GET['ChairmanType']) && isset($_GET['ChairmanVillage']) && isset($_GET['ChairmanSector']) && isset($_GET['ChairmanCell']) ){
+    $ChairmanNID = $_GET["ChairmanNID"];
+    $ChairmanNames = $_GET["ChairmanNames"];
+    $ChairmanUsername = $_GET["ChairmanUsername"];
+    $ChairmanType = $_GET["ChairmanType"];
+    $ChairmanDistrict = $_GET["ChairmanDistrict"];
+    $ChairmanVillage = $_GET["ChairmanVillage"];
+    $ChairmanSector = $_GET["ChairmanSector"];
+    $ChairmanCell = $_GET["ChairmanCell"];
+    savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType,$ChairmanDistrict,$ChairmanVillage,$ChairmanSector,$ChairmanCell);
+}
 if(isset($_GET['action']) && $_GET['action'] == "SaveAgent" && isset($_GET['AgentNID']) && isset($_GET['AgentNames']) && isset($_GET['AgentType']) && isset($_GET['AgentVillage']) && isset($_GET['AgentSector']) && isset($_GET['AgentCell']) ){
     $AgentNID = $_GET["AgentNID"];
     $AgentNames = $_GET["AgentNames"];
@@ -216,14 +227,55 @@ function activate_agent($ActivateCode,$ActivateEmail,$ActivatePassword){
                 echo "false";
             }
         }else{
-            echo "NotExist";
+            
         }
     }else{
-
-        echo "exist";
+        //echo "NotExist";
+        if($db->Check("SELECT * FROM `chairman` WHERE `chairman`.`username`  = ?  AND `chairman`.`code` = ?",["$ActivateEmail","$ActivateCode"])){
+            if($db->UpdateData("UPDATE `chairman` SET `chairman`.`password`  = ?, `chairman`.`status` = ? WHERE `chairman`.`username`  = ?  AND `chairman`.`code` = ?",["$hashedPassword","ACTIVE","$ActivateEmail","$ActivateCode"])){
+                echo "true";
+            }else{
+                echo "false";
+            }
+        }else{
+            echo "NotExist";
+            
+        }
 
     }
 
+}
+//save chairman
+function savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType,$ChairmanDistrict,$ChairmanVillage,$ChairmanSector,$ChairmanCell){
+    global $db,$function;
+    $code = $function->randomCode();
+    if(count($code) != 6){
+        $code = $function->randomCode();
+    }
+    if(!$db->Check("SELECT * FROM `chairman`  WHERE `chairman`.`nid` = ? AND `chairman`.`names` =? ",["$ChairmanNID","$ChairmanUsername"])){
+        if($db->InsertData("INSERT INTO `chairman` (
+            `id`, 
+            `nid`, 
+            `names`, 
+            `username`, 
+            `user_type`, 
+            `akarere`, 
+            `umurenge`, 
+            `akagali`, 
+            `umudugudu`, 
+            `status`, 
+            `type`, 
+            `code`, 
+            `created_at`, 
+            `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0', ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
+            ["$ChairmanNID","$ChairmanNames","$ChairmanUsername","$ChairmanType","$ChairmanDistrict","$ChairmanVillage","$ChairmanSector","$ChairmanCell","INACTIVE","$code"])){
+            echo "true";
+        }else{
+            echo "false";
+        }
+    }else{
+        echo "existed";
+    }
 }
 //save agent
 function saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell){
@@ -264,8 +316,9 @@ function SignUserIn($userEmail,$userPassword,$NID){
     $email    = $userEmail;
     //enclyption of user password
     $hashPass = hash("sha256",$password);
-
+    //echo $NID;
     if(empty($NID)){
+        
         if ($user = $db->GetRow("SELECT * FROM `system_users` WHERE (`system_users`.`email` = ?  AND `system_users`.`password` = ?) ",["$email","$hashPass"])) {
 
             $_SESSION['userEmail'] = $email;
@@ -290,8 +343,7 @@ function SignUserIn($userEmail,$userPassword,$NID){
             }else{
                 echo "FalseWriting";
             }
-        } else {
-            if($user = $db->GetRow("SELECT * FROM `agents` WHERE (`agents`.`username` = ?  AND `agents`.`password` = ?) ",["$email","$hashPass"])){
+        } else if($user = $db->GetRow("SELECT * FROM `agents` WHERE (`agents`.`username` = ?  AND `agents`.`password` = ?) ",["$email","$hashPass"])){
                 $_SESSION['userEmail'] = $email;
                 $_SESSION['user_password'] = 'true';
                 $_SESSION['type'] = $user['type'];
@@ -302,20 +354,40 @@ function SignUserIn($userEmail,$userPassword,$NID){
                     case 2:
                     echo "trueAgent";
                     break;
+                    case 3:
+                    echo "trueChairman";
+                    break;
                     default:
                     echo "FalseNotExists";
                     break;
 
                 }   
-        
+    
+        }else{
+
+            if($user = $db->GetRow("SELECT * FROM `chairman` WHERE (`chairman`.`username` = ?  AND `chairman`.`password` = ?) ",["$email","$hashPass"])){
+                $_SESSION['userEmail'] = $email;
+                $_SESSION['user_password'] = 'true';
+                $_SESSION['type'] = $user['type'];
+                switch($user['type']){
+                    case 1:
+                    echo "trueAdmin";
+                    break;
+                    case 2:
+                    echo "trueAgent";
+                    break;
+                    case 3:
+                    echo "trueChairman";
+                    break;
+                    default:
+                    echo "FalseNotExists";
+                    break;
+
+                }
             }else{
                 echo "FalseNotExists";
             }
         }
-    }else{
-
     }
-
-
 
 }

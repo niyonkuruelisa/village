@@ -176,7 +176,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                         
                     </div> <!-- end col -->
                     
-                    <button type="button" class="btn btn-purple waves-effect waves-light" id="SaveClient">Bika Ibyanditswe</button>
+                    <button type="button" class="btn btn-purple waves-effect waves-light" id="SaveClient" disabled="disabled">Bika Ibyanditswe</button>
                     <button type="refresh" class="btn btn-danger waves-effect waves-light" id="discardSaves" onClick="location.href=location.href">Discard</button>
                 </div>
                 

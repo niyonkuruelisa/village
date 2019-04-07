@@ -14,7 +14,7 @@ isValidEmail = false;
 // re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 if(emailValidate != '' && emailValidate.length > 1){
-  if(emailValidate.length > 5){
+  if(emailValidate.length > 3){
     isValidEmail = true;
     $('#responses').html('');
     }
@@ -43,16 +43,17 @@ $('#signIn').click(function (){
             'NID': NID
           },
           success: function (data){
-            //console.log(data);
+            console.log(data);
             if(data == 'FalseNotExists'){
               $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oh!</strong><a href="#" class="alert-link"></a> Iyi Konti Ntabwo Ifunguye. </div>');
             }else if(data == 'trueAdmin'){
               location.assign(SITEURL+"admin/");
             }else if(data == 'trueAgent'){
               location.assign(SITEURL+"agent/");
-            }
-            else if(data == 'trueClient'){
+            }else if(data == 'trueClient'){
               location.assign(SITEURL+"client/");
+            }else if(data == 'trueChairman'){
+              location.assign(SITEURL+"chairman/");
             }
           }
         })
@@ -233,7 +234,58 @@ $('#Logout').click(function (e){
     }
   })
 })
+//saving new chairman
+var ChairmanNID = ""
+var ChairmanNames = ""
+var ChairmanUsername = ""
+var ChairmanType = ""
+var ChairmanDistrict = ""
+var ChairmanVillage = ""
+var ChairmanSector = ""
+var ChairmanCell = ""
+$('#SaveChairman').click(function (){
+  ChairmanNID = $("#ChairmanNID").val()
+  ChairmanNames = $("#ChairmanNames").val()
+  ChairmanUsername = $("#ChairmanUsername").val()
+  ChairmanType = $("#ChairmanType").val()
+  ChairmanDistrict = $("#ChairmanDistrict").val()
+  ChairmanVillage = $("#ChairmanVillage").val()
+  ChairmanSector = $("#ChairmanSector").val()
+  ChairmanCell = $("#ChairmanCell").val()
+  
 
+  //console.log(AgentNID+" /"+AgentNames+" /"+AgentUsername+" /"+AgentType+" /"+AgentDistrict+" /"+AgentVillage+" /"+AgentSector+" /"+AgentCell);
+  if(ChairmanNID.length < 1 || ChairmanNames.length < 1 || ChairmanUsername.length < 1 || ChairmanType.length < 1 || ChairmanDistrict.length < 1 || ChairmanVillage.length < 1 || ChairmanSector.length < 1 || ChairmanCell.length < 1){
+    $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Please!!</strong><a href="#" class="alert-link"></a>Fill All Fields.</div>');
+  }else{
+    $.ajax({
+      type: 'GET',
+      url: SITEURL+'submissions.php',
+      data:{
+        'action'        : 'SaveChairman',
+        'ChairmanNID'      : ChairmanNID,
+        'ChairmanNames'    : ChairmanNames,
+        'ChairmanUsername' : ChairmanUsername,
+        'ChairmanType'     : ChairmanType,
+        'ChairmanDistrict' : ChairmanDistrict,
+        'ChairmanVillage'  : ChairmanVillage,
+        'ChairmanSector'   : ChairmanSector,
+        'ChairmanCell'     : ChairmanCell,
+      },
+      success: function(data){
+        //console.log(data)
+        if(data =='true'){
+          $('#responses').html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>Successfully Saved An Chairman.</div>');
+        }else if(data == 'existed'){
+          $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>This Chairman Is Already Registered.</div>');
+        }else{
+          $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>Can not save Chairman now, try after sometimes.</div>');
+        }
+      }
+      })
+  }
+})
+//saving new agent
 var AgentNID = ""
 var AgentNames = ""
 var AgentUsername = ""

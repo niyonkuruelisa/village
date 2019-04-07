@@ -1,9 +1,9 @@
 <?php require_once '../bootstrap.php';
 $credetials = isLoggedIn();
-if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $credetials[1] == '' || $credetials[2] != 1){
+if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $credetials[1] == '' || $credetials[2] != 3){
   redirect($credetials[0],$credetials[1],$credetials[2]);
 }else{
-    require 'adminOperations.php';
+    require 'chairmanOperations.php';
 }
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 
         <link rel="shortcut icon" href="<?php echo URLROOT?>front/images/favicon.ico">
 
-        <title>Transactons - <?php echo SITENAME;?> - <?php echo NAMES;?>(Admin)</title>
+        <title>Transactons - <?php echo SITENAME;?> - <?php echo NAMES;?>(Chairman)</title>
 
         <!-- App css -->
         <?php require_once("../CSS.php")?>

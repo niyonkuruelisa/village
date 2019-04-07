@@ -26,7 +26,7 @@
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo URLROOT?>assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li class="text-center">
-                                        <h5>Hi, <?php echo NAMES;?> (Admin)</h5>
+                                        <h5>Hi, <?php echo NAMES;?> (Chairman)</h5>
                                     </li>
                                     <li><a href="#" id="Profile"><i class="ti-user m-r-5"></i> My Profile</a></li>
                                     <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
@@ -59,25 +59,10 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li class="has-submenu">
-                                <a href="<?php echo URLROOT?>admin"><i class="mdi mdi-view-dashboard"></i>Home</a>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="addClient.php"><i class="ion-android-social"></i>Add New Client</a>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="addAgent.php"><i class="ion-android-social"></i>Add New Agent</a>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="addChairman.php"><i class="ion-android-social"></i>Add New Chairman</a>
+                                <a href="<?php echo URLROOT?>chairman"><i class="mdi mdi-view-dashboard"></i>Home</a>
                             </li>
                             <li class="has-submenu">
                                 <a href="transactions.php"><i class="ion-android-social"></i>Transactions</a>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="agents.php"><i class="ti-user m-r-5"></i>All Agents</a>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="clients.php"><i class="ti-user m-r-5"></i>All Clients</a>
                             </li>
                         </ul>
                         <!-- End navigation menu -->

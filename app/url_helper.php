@@ -4,11 +4,12 @@
   function redirect($userEmail,$password,$type){
     
     global $db;
-    $page ="";
-    $loginPage =  "login/";
-    $adminPage =  "admin/";
-    $agentPage =  "agent/";
-    $clientPage = "client/";
+    $page         = "";
+    $loginPage    = "login/";
+    $adminPage    = "admin/";
+    $agentPage    = "agent/";
+    $clientPage   = "client/";
+    $chairmanPage = "chairman/";
 
     if ($userEmail == '' || $userEmail == null) {
       $page = $loginPage;
@@ -38,6 +39,13 @@
             $page = $agentPage;
           }
 
+          break;
+
+          case 3:
+          if($db->check("SELECT * FROM `chairman` WHERE `chairman`.`username` = ?",["$userEmail"]) == true){
+            $page = $chairmanPage;
+          }
+          
           break;
 
           default:

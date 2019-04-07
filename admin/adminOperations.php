@@ -13,7 +13,7 @@ if($credetials == null && $credetials[0] == null){
     $systemUsers = $db->GetRows("SELECT `system_users`.* FROM `system_users`");
     //fetching user informations
     $email  = $credetials[0];
-    $info   = $db->GetRow("SELECT `system_users`.* FROM `system_users`  WHERE `system_users`.`email` = ?  ORDER BY created_at, updated_at DESC",["$email"]);
+    $info   = $db->GetRow("SELECT `system_users`.* FROM `system_users`  WHERE `system_users`.`email` = ?  ORDER BY updated_at DESC",["$email"]);
 
     define("ID",$info["user_id"]);
     define("EMAIL",$info["email"]); 
@@ -29,9 +29,14 @@ if($credetials == null && $credetials[0] == null){
 
     $agents = $db->GetRows("SELECT `agents`.* FROM `agents`");
     $totalAgents = count($agents);
-    $transactions = $db->GetRows("SELECT * FROM `transactions`");
+    
     $clients = $db->GetRows("SELECT `clients`.* FROM `clients`");
     $totalClients = count($clients);
-    $pendingTransaction = $db->GetSum("SELECT * FROM `transactions` WHERE `transactions`.`status` = ?",["Pending"]);
-    
+
+    $transactions = $db->GetRows("SELECT `transactions`.*,`clients`.`village`,`clients`.`names` FROM `transactions` 
+    JOIN `clients` ON `transactions`.`client_id` = `clients`.`id`  ORDER BY `transactions`.`updated_at` DESC");
+
+    $pendingTransaction = $db->GetSum("SELECT `transactions`.*,`clients`.`village`,`clients`.`names` FROM `transactions` 
+    JOIN `clients` ON `transactions`.`client_id` = `clients`.`id` 
+    WHERE `transactions`.`status` = ?",["Pending"]);
 }
