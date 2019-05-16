@@ -97,7 +97,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 											<select id="Month" class="form-control select2">
 												<optgroup label=" Uburyo Bwo Kwishyura">
 													<option value="Mutarama (Ukwa 1)">Mutarama (Ukwa 1)</option>
-													<option value="Gashyanare (Ukwa 2)">Gashyanare (Ukwa 2)</option>
+													<option value="Gashyantare (Ukwa 2)">Gashyanare (Ukwa 2)</option>
 													<option value="Werurwe (Ukwa 3)">Werurwe (Ukwa 3)</option>
 													<option value="Mata (Ukwa 4)">Mata (Ukwa 4)</option>
 													<option value="Gicurasi (Ukwa 5)">Gicurasi (Ukwa 5)</option>

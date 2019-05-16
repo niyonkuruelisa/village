@@ -1,7 +1,8 @@
 {
-	"enter_choice_1":{"kin":"1.Tanga umusanzu FPR\n1.Tanga umusanzu w'umutekano\n3.Konte Yanjye", "en":"1. Pay FPR contribution\n2. Pay security fees\n2. My Account"},
+	"enter_choice_1":{"kin":"1.Tanga umusanzu FPR\n2.Tanga umusanzu w'umutekano\n3.Konte Yanjye", "en":"1. Pay FPR contribution\n2. Pay security fees\n2. My Account"},
 	"enter_amount":{"kin":"Shyiramo amafranga", "en":"Enter amount"},
-	"enter_merchant_tin":{"kin":"Shyiramo TIN y'umuruzi", "en":"Enter merchant TIN"},
+	"choose_payment_month":{"kin":"1.Mutarama\n2.Gashyantare3. \nWerurwe\n4. Mata\n5. Gicurasi\n6. Kamena\n7. Nyakanga\n8. Kanama\n9. Nzeri\n10. kwakira\n11. Ugushyingo\n12. Ukuboza", "en":"Enter merchant TIN"},
+	"enter_phone_number_final": {"kin":"Ugiye gutana umusanzu ukoresheje telefone.\nShyiramo numero yawe cyangwa ushyiremo 1 gukoresha iyi."},
 	"enter_confirm_mtn_trans":{"kin":"Emeza transaction ya mobile money. Utabonye akamenyetso kanda *182*7#", "en":"Please confirm the sent MTN transaction, dial *182*7# to confirm if you did not get request"},
 	"confirm":{"kin":"Emeza", "en":"Confirm"},
 	"go_back":{"kin":"Subira inyuma", "en":"Go back"},

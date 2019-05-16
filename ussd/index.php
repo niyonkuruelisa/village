@@ -116,30 +116,33 @@ if($nrequests == 0 || $text == ''){
 
 					// die();
 					if($nrequests == 3){
-						//Ask the merchant TIN
-						$response.= "CON ".getString('enter_merchant_tin')."\n#. Exit";
+						//List months to contribute for
+						$response.= "CON ".getString('choose_payment_month')."\n#. Exit";
 					}else if ($nrequests == 4) {
-						// Show the summary
-						$response.= "CON VAT: ".number_format($amount*.18)."RWF \nMerchant: ".number_format($amount*.82)."RWF\nTotal: ".number_format($amount)."RWF \n 1. ".getString('confirm')." \n#. Exit";
+						// Enter phone number
+						$response.= "CON ".getString('enter_phone_number_final')." \n#. Exit";
 					}else if ($nrequests == 5) {
 						$request_5 = $requests[4];
-						if($request_5 == 1){
-							//TODO: send MTN popup
-							//aMOUNT
-							$vat = $amount*.18;
-							$merchant_amount = $amount*.82;
-							$merchant_tin = $requests[4];;
 
+						//here we have captured the phone number
+						if($request_5 == 1){
+							//payment phone number will be current phone
+							$paymentPhone = $phoneNumber;
+						}else{
+							$paymentPhone = $request_5;
+						}
+
+						if($paymentPhone){
 							//record transaction
-							$sql = "INSERT INTO transactions(\"$phoneNumber\", \"$amount\", \"$vat\", \"$merchant_amount\", \"$merchant_amount\", 'PENDING')";
+							$sql = "INSERT INTO transactions(\"$phoneNumber\", \"$amount\", \"$merchant_amount\", \"$merchant_amount\", 'PENDING')";
 							
 							$con->query($sql);
 
-							paymtn($amount, $phoneNumber);
+							paymtn($amount, $3);
 							$response.= "END ".getString('enter_confirm_mtn_trans')."\n";
 						}else{
 							//invalid choice
-							$response.= "END Invalid choice\n";
+							$response.= "END Telephone mwashyizemo yanditse nabi";
 						}
 					}
 					 
