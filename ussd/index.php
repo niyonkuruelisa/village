@@ -143,8 +143,6 @@ if($nrequests == 0 || $text == ''){
 							
 							$query = $con->query($sql);
 
-							echo "$sql";
-
 							paymtn($amount, $paymentPhone);
 							$response.= "END ".getString('enter_confirm_mtn_trans')."\n";
 						}else{
