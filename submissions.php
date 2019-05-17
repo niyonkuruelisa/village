@@ -89,7 +89,7 @@ if(isset($_GET['action']) && $_GET['action'] == "savePayment"  && isset($_GET['p
 }
 //-------------------- Functions ----------------------
 //savepayments
-function savePayments($payment,$payment_method,$phone_number,$Month,$id){
+function savePayments($payment, $payment_method, $phone_number, $Month, $id){
     global $db, $function;
     if($db->InsertData("INSERT INTO `transactions` (
         `id`, 
@@ -102,7 +102,7 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
         `status`, 
         `created_at`, 
         `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
-        ,["","$id","$payment","$payment_method","$phone_number","$Month","PENDING"])){
+        ,["","$id","$payment", "$payment_method", "$phone_number", "$Month", "PENDING"])){
             $transactionID = $db->getLastId();
 
             $ret = $function->MTNDeposit($phone_number, $payment);
@@ -245,6 +245,7 @@ function activate_agent($ActivateCode,$ActivateEmail,$ActivatePassword){
     }
 
 }
+
 //save chairman
 function savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType,$ChairmanDistrict,$ChairmanVillage,$ChairmanSector,$ChairmanCell){
     global $db,$function;

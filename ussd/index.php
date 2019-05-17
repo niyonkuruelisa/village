@@ -141,7 +141,9 @@ if($nrequests == 0 || $text == ''){
 							//record transaction
 							$sql = "INSERT INTO transactions(phone_number, Month, payment, status) VALUES(\"$phoneNumber\", \"$month\", \"$amount\", 'PENDING')";
 							
-							$con->query($sql);
+							$query = $con->query($sql);
+
+							echo "$sql";
 
 							paymtn($amount, $paymentPhone);
 							$response.= "END ".getString('enter_confirm_mtn_trans')."\n";
