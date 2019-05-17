@@ -2,7 +2,7 @@
 include_once 'db.php';
 include_once 'functions.php';
 //include_once '../../scripts/class.payment.php';
-header("Content-Type: text/plain");
+// header("Content-Type: text/plain");
 
 session_start(); //For web testing only
 error_reporting(E_ALL);
@@ -18,7 +18,6 @@ if(isset($_GET['ses'])){
 $response = "";
 $tdata = array();
 
-$conn = $db;
 $req = array_merge($_POST, $_GET); //Keeping get and post for testing and productin handling concurently
 $sessionId   = $req["sessionId"]??session_id();
 $serviceCode = $req["serviceCode"]??"*801#";
@@ -97,7 +96,7 @@ if($nrequests == 0 || $text == ''){
 				$val = validatePlate($cplate);
 				$val = $srequest;
 				if($val == 1){
-					//Pay bill
+					//Contribute cash
 					$response.= "CON ".getString('enter_amount')."\n";					
 				}else if($val == 2){
 					//My account
@@ -124,6 +123,12 @@ if($nrequests == 0 || $text == ''){
 					}else if ($nrequests == 5) {
 						$request_5 = $requests[4];
 
+						//month
+						$month = $requests[3];
+
+						//amont
+						$amount = $requests[2];
+
 						//here we have captured the phone number
 						if($request_5 == 1){
 							//payment phone number will be current phone
@@ -134,11 +139,11 @@ if($nrequests == 0 || $text == ''){
 
 						if($paymentPhone){
 							//record transaction
-							$sql = "INSERT INTO transactions(\"$phoneNumber\", \"$amount\", \"$merchant_amount\", \"$merchant_amount\", 'PENDING')";
+							$sql = "INSERT INTO transactions(phone_number, Month, payment, status) VALUES(\"$phoneNumber\", \"$month\", \"$amount\", 'PENDING')";
 							
 							$con->query($sql);
 
-							paymtn($amount, $3);
+							paymtn($amount, $paymentPhone);
 							$response.= "END ".getString('enter_confirm_mtn_trans')."\n";
 						}else{
 							//invalid choice
