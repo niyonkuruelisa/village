@@ -249,7 +249,7 @@ function activate_agent($ActivateCode,$ActivateEmail,$ActivatePassword){
 }
 //save chairman
 function savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType,$ChairmanDistrict,$ChairmanVillage,$ChairmanSector,$ChairmanCell){
-    global $db,$function;
+    global $db ,$function;
     $code = $function->randomCode();
     if(count($code) != 6){
         $code = $function->randomCode();
