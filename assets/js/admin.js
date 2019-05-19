@@ -50,6 +50,8 @@ $('#signIn').click(function (){
               location.assign(SITEURL+"admin/");
             }else if(data == 'trueAgent'){
               location.assign(SITEURL+"agent/");
+            }else if(data == 'trueSecurity'){
+              location.assign(SITEURL+"security/");
             }else if(data == 'trueClient'){
               location.assign(SITEURL+"client/");
             }else if(data == 'trueChairman'){
@@ -289,6 +291,7 @@ $('#SaveChairman').click(function (){
 var AgentNID = ""
 var AgentNames = ""
 var AgentUsername = ""
+var AgentPosition = ""
 var AgentType = ""
 var AgentDistrict = ""
 var AgentVillage = ""
@@ -297,6 +300,7 @@ var AgentCell = ""
 $('#SaveAgent').click(function (){
   AgentNID = $("#AgentNID").val()
   AgentNames = $("#AgentNames").val()
+  AgentPosition =  $("#AgentPosition").val()
   AgentUsername = $("#AgentUsername").val()
   AgentType = $("#AgentType").val()
   AgentDistrict = $("#AgentDistrict").val()
@@ -305,7 +309,7 @@ $('#SaveAgent').click(function (){
   AgentCell = $("#AgentCell").val()
   
 
-  console.log(AgentNID+" /"+AgentNames+" /"+AgentUsername+" /"+AgentType+" /"+AgentDistrict+" /"+AgentVillage+" /"+AgentSector+" /"+AgentCell);
+  console.log(AgentNID+" /"+AgentNames+" /"+AgentUsername+" /"+AgentType+" /"+AgentPosition + " /"+AgentDistrict+" /"+AgentVillage+" /"+AgentSector+" /"+AgentCell);
   if(AgentNID.length < 1 || AgentNames.length < 1 || AgentUsername.length < 1 || AgentType.length < 1 || AgentDistrict.length < 1 || AgentVillage.length < 1 || AgentSector.length < 1 || AgentCell.length < 1){
     $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Please!!</strong><a href="#" class="alert-link"></a>Fill All Fields.</div>');
   }else{
@@ -317,6 +321,7 @@ $('#SaveAgent').click(function (){
         'AgentNID'      : AgentNID,
         'AgentNames'    : AgentNames,
         'AgentUsername' : AgentUsername,
+        'AgentPosition' : AgentPosition,
         'AgentType'     : AgentType,
         'AgentDistrict' : AgentDistrict,
         'AgentVillage'  : AgentVillage,
@@ -326,9 +331,10 @@ $('#SaveAgent').click(function (){
       success: function(data){
         console.log(data)
         if(data =='true'){
-          $('#responses').html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>Successfully Saved An Agent.</div>');
+          alert("Successfully Saved An Agent. :)")
+          $('#responses').html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Wow!</strong><a href="#" class="alert-link"></a>Successfully Saved An Agent.</div>');
         }else if(data == 'existed'){
-          $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>This Agent Is Already Registered.</div>');
+          $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>Agent with same National ID or username Is Already Registered. Try Another National ID or username</div>');
         }else{
           $('#responses').html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button> <i class="fa fa-ban-circle"></i><strong>Oops!</strong><a href="#" class="alert-link"></a>Can not save agent now, try after sometimes.</div>');
         }

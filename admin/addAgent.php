@@ -76,16 +76,23 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         <input type="text" class="form-control" id="AgentUsername" name="AgentUsername" placeholder="Enter Username" >
                                     </div>
                                     <div class="form-group m-b-20">
-                                        <label for="AgentType">User Type</label>
+                                        <label for="AgentType">Ashinzwe</label>
                                         <select id="AgentType" class="form-control">
-                                            <option selected="" value="AGENT">AGENT</option>
-                                            <option value="LEADER">LEADER</option>
+                                            <option selected="" value="2">UMUSANZU</option>
+                                            <option value="4">UMUTEKANO</option>
                                         </select>
                                     </div>
                                 </div>
                             </div> <!-- end p-20 -->
                         </div> <!-- end col -->
                         <div class="col-md-6 ">
+                        <div class="form-group m-b-20">
+                            <label for="AgentPosition">User Position</label>
+                            <select id="AgentPosition" class="form-control">
+                                <option selected="" value="AGENT">AGENT</option>
+                                <option value="LEADER">LEADER</option>
+                            </select>
+                        </div>
                         <div class="form-group m-b-20">
                             <label for="AgentDistrict">Akarere</label>
                             <select id="AgentDistrict" class="form-control">

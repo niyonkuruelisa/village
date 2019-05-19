@@ -29,7 +29,8 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveAgent" && isset($_GET['Agen
     $AgentVillage = $_GET["AgentVillage"];
     $AgentSector = $_GET["AgentSector"];
     $AgentCell = $_GET["AgentCell"];
-    saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell);
+    $AgentPosition = $_GET["AgentPosition"];
+    saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentPosition,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell);
 }
 //login client
 if(isset($_GET["action"]) && $_GET["action"] == "clientLogin" && isset($_GET["nid"])){
@@ -103,6 +104,7 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
         `created_at`, 
         `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
         ,["","$id","$payment","$payment_method","$phone_number","$Month","PENDING"])){
+            
             $transactionID = $db->getLastId();
 
             $ret = $function->MTNDeposit($phone_number, $payment);
@@ -278,19 +280,19 @@ function savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType
     }
 }
 //save agent
-function saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell){
+function saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentPosition,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell){
     global $db,$function;
     $code = $function->randomCode();
     if(count($code) != 6){
         $code = $function->randomCode();
     }
-    if(!$db->Check("SELECT * FROM `agents`  WHERE `agents`.`nid` = ? ",["$AgentNID"])){
+    if(!$db->Check("SELECT * FROM `agents`  WHERE `agents`.`nid` = ? OR `agents`.`username` ",["$AgentNID","$AgentUsername"])){
         if($db->InsertData("INSERT INTO `agents` (
             `id`, 
             `nid`, 
             `names`, 
             `username`, 
-            `user_type`, 
+            `position`, 
             `akarere`, 
             `umurenge`, 
             `akagali`, 
@@ -299,8 +301,8 @@ function saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentType,$AgentDistric
             `type`, 
             `code`, 
             `created_at`, 
-            `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0', ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
-            ["$AgentNID","$AgentNames","$AgentUsername","$AgentType","$AgentDistrict","$AgentVillage","$AgentSector","$AgentCell","INACTIVE","$code"])){
+            `updated_at`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
+            ["$AgentNID","$AgentNames","$AgentUsername","$AgentPosition","$AgentDistrict","$AgentVillage","$AgentSector","$AgentCell","INACTIVE","$AgentType","$code"])){
             echo "true";
         }else{
             echo "false";
@@ -356,6 +358,9 @@ function SignUserIn($userEmail,$userPassword,$NID){
                     break;
                     case 3:
                     echo "trueChairman";
+                    break;
+                    case 4:
+                    echo "trueSecurity";
                     break;
                     default:
                     echo "FalseNotExists";

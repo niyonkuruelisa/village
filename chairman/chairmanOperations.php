@@ -41,5 +41,7 @@ if($credetials == null && $credetials[0] == null){
     $pendingTransaction = $db->GetSum("SELECT `transactions`.*,`clients`.`village`,`clients`.`names` FROM `transactions` 
     JOIN `clients` ON `transactions`.`client_id` = `clients`.`id` 
     WHERE `clients`.`village` = ? AND `transactions`.`status` = ?",[UMURENGE,"Pending"]);
-    
+
+    $dueContributions = $db->GetRows("SELECT `clients`.* FROM `clients` JOIN `transactions` ON `clients`.`id` != `transactions`.`client_id` WHERE `clients`.`village` = ?",[UMURENGE]);
+    //echo "<script>alert('".count($dueContributions)." ');</script>";
 }

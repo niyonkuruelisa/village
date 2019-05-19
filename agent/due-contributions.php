@@ -8,7 +8,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
@@ -16,12 +16,13 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 
         <link rel="shortcut icon" href="<?php echo URLROOT?>front/images/favicon.ico">
 
-        <title>AgentDashboard - <?php echo SITENAME;?> - <?php echo NAMES;?>(Agent)</title>
+        <title>Transactons - <?php echo SITENAME;?> - <?php echo NAMES;?>(Agent)</title>
 
         <!-- App css -->
         <?php require_once("../CSS.php")?>
 
     </head>
+
 
     <body>
 
@@ -41,10 +42,10 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                             <div class="btn-group pull-right">
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                      <li>
-                                        <a href="<?php echo URLROOT;?>">Ahabanza</a>
+                                        <a href="index.php">Ahabanza</a>
                                     </li>
                                     <li class="active">
-                                        Abaturage Wandikishije
+                                        abataratanze imisanzu
                                     </li>
                                 </ol>
                             </div>
@@ -54,62 +55,22 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                 </div>
                 <!-- end page title end breadcrumb -->
                 <div class="row">
-                
-                    <!-- <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
+                <div class="col-lg-12">
+                    <div class="portlet">
+                        <div class="portlet-heading bg-inverse">
+                            <h3 class="portlet-title">
+                                ABATARATANZE IMISANZU
+                            </h3>
+                            <div class="portlet-widgets">
+                                <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                <span class="divider"></span>
+                                <a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple"><i class="ion-minus-round"></i></a>
+                                
                             </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Leaders/Agents</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Clients</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Villages</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-box-three">
-                            <div class="bg-icon pull-left">
-                                <i class="ti-layout-list-post"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-muted m-t-5 text-uppercase font-600 font-secondary">Total Pending Withdrow</p>
-                                <h2 class="m-b-10"><span data-plugin="counterup">0</span></h2>
-                            </div>
-                        </div>
-                    </div> -->
-                    
-                </div>
-                <!-- end row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                    <div class="card-box">
-                            <h4 class="m-t-0 m-b-30 header-title">Urutonde Rw'Abaturage Wandikishije</h4>
-
+                        <div id="bg-purple" class="panel-collapse collapse in">
+                            <div class="portlet-body">
                             <div class="table-responsive">
                             <table id="datatable-responsive" class="table table-striped table-hover dt-responsive ">
                                 <thead>
@@ -138,7 +99,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                 <tbody>
                                     <?php
                                     $i = 0;
-                                    foreach ($clients as $client) {
+                                    foreach ($dueContributions as $client) {
                                         $i++;
                                         $nid            = $client["nid"];
                                         $names          = $client["names"];
@@ -190,12 +151,12 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         }
                                         ?>
                                     </tbody>
-                            </table>
-                                
+                                </table>
+                                </div>
                             </div>
                         </div>
-
-                    </div> 
+                    </div>
+                </div>
                 </div>
                 <!-- end row -->
                 

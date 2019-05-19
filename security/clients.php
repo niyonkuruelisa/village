@@ -1,9 +1,9 @@
 <?php require_once '../bootstrap.php';
 $credetials = isLoggedIn();
-if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $credetials[1] == '' || $credetials[2] != 2){
+if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $credetials[1] == '' || $credetials[2] != 4){
   redirect($credetials[0],$credetials[1],$credetials[2]);
 }else{
-    require 'agentOperations.php';
+    require 'securityOperations.php';
 }
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 
         <link rel="shortcut icon" href="<?php echo URLROOT?>front/images/favicon.ico">
 
-        <title>AgentDashboard - <?php echo SITENAME;?> - <?php echo NAMES;?>(Agent)</title>
+        <title>SecurityDashboard - <?php echo SITENAME;?> - <?php echo NAMES;?>(<?php echo USER_TYPE?>)</title>
 
         <!-- App css -->
         <?php require_once("../CSS.php")?>

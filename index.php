@@ -30,13 +30,13 @@
     <!-- Home-Area -->
     <header class="home-area overlay" id="home_page">
         <div class="container">
-            <div class="row">
+            <div class="row" >
                 <div class="col-xs-12 hidden-sm col-md-4">
                     <!-- <figure class="mobile-image wow fadeInUp" data-wow-delay="0.1s">
                         <img src="images/header-mobile.png" alt="">
                     </figure> -->
                 </div>
-                <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12 col-md-8" id="kwishyura">
                     <h1 class="wow fadeInUp" data-wow-delay="0.4s">Basha kwishyura amafaranga y'umudugudu n'ibindi.</h1>
                     <div class="space-20"></div>
                     <div class="desc wow fadeInUp" data-wow-delay="0.6s">
@@ -45,7 +45,7 @@
                     <!-- <div class="space-20"></div>
                     <a href="#" class="bttn-white wow fadeInUp" data-wow-delay="0.8s"><i class="lnr lnr-location"></i>KANDA HANO KWISHYURA</a>
                  -->
-                    <div class="subscribe-form text-center">
+                    <div class="subscribe-form text-center" >
                         <h3 class="blue-color">Ishyura Byihuse</h3>
                         <div class="space-20"></div>
                         <form id="mc-form">
@@ -160,7 +160,7 @@
                     <div class="page-title text-center">
                         <img src="<?php echo URLROOT;?>front/images/about-logo.png" alt="About Logo">
                         <div class="space-20"></div>
-                        <h5 class="title">About Appy</h5>
+                        <h5 class="title">Ibitwerekeye Ho</h5>
                         <div class="space-30"></div>
                         <h3 class="blue-color">A beautiful app for consectetur adipisicing elit, sed do eiusmod tempor incididunt ut mollit anim id est laborum. Sedut perspiciatis unde omnis. </h3>
                         <div class="space-20"></div>

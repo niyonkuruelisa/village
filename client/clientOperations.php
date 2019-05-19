@@ -25,6 +25,7 @@ if($credetials == null && $credetials[0] == null){
     define("UMUDUGUDU",$info["cell"]);
     define("STATUS",$info["status"]);
     define("REG_DATE",$info["created_at"]);
+    
     $transactions = $db->GetRows("SELECT `transactions`.* FROM `transactions` WHERE `transactions`.`client_id` = ? ",[ID]);
     
     // $clients = $db->GetRows("SELECT `clients`.* FROM `clients` WHERE `clients`.`created_by` = ? ",[ID]);

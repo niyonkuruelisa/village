@@ -1,3 +1,3 @@
 <?php
 
-echo hash("sha256","agent@village");
+echo hash("sha256","admin@village");

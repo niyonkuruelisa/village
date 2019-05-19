@@ -20,9 +20,10 @@
                     <li><a href="<?php echo URLROOT;?>#about_page">ABO TURIBO</a></li>
                     <li><a href="<?php echo URLROOT;?>#contact_page">UKO WATUBONA</a></li>
                     <li><a href="<?php echo URLROOT;?>#gallery_page">AMAFOTO</a></li>
+                    <li><a href="<?php echo URLROOT;?>login">KWINJIRA</a></li>
                 </ul>
                 <div class="right-button hidden-xs">
-                    <a href="#">KWISHYURA</a>
+                    <a href="#kwishyura">KWISHYURA</a>
                 </div>
             </div>
         </div>

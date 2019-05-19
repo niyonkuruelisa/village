@@ -61,7 +61,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 						<div class="portlet">
 							<div class="portlet-heading bg-inverse">
 								<h3 class="portlet-title">
-									ISHYURA UMUTEKANO
+									ISHYURA UMUSANZU
 								</h3>
 								<div class="portlet-widgets">
 									<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
@@ -129,12 +129,13 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
 						<div class="portlet">
 							<div class="portlet-heading bg-inverse">
 								<h3 class="portlet-title">
-									AMAFARANGA Y'UMUTEKANO YISHYUWE NA (<?php echo NAMES;?>)
+									IMISANZU YATANZWE NA (<?php echo NAMES;?>)
 								</h3>
 								<div class="portlet-widgets">
 									<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
 									<span class="divider"></span>
 									<a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple"><i class="ion-minus-round"></i></a>
+									
 								</div>
 								<div class="clearfix"></div>
 							</div>

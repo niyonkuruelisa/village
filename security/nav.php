@@ -10,13 +10,12 @@
                             <!--Zircos-->
                         <!--</a>-->
                         <!-- Image Logo -->
-                        <a href="#" class="logo">
+                        <a href="<?php URLROOT;?>agent/" class="logo">
                             <img src="<?php echo URLROOT?>front/images/about-logo.png" alt="" height="50" width="50">
                         </a>
 
                     </div>
                     <!-- End Logo container-->
-
 
                     <div class="menu-extras">
 
@@ -26,7 +25,7 @@
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo URLROOT?>assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li class="text-center">
-                                        <h5>Hi, <?php echo NAMES;?> (Chairman)</h5>
+                                        <h5>Hi, <?php echo NAMES;?> (UMUTEKANO)</h5>
                                     </li>
                                     <li><a href="#" id="Profile"><i class="ti-user m-r-5"></i> My Profile</a></li>
                                     <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
@@ -59,16 +58,16 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li class="has-submenu">
-                                <a href="<?php echo URLROOT?>chairman"><i class="mdi mdi-view-dashboard"></i>Home</a>
+                                <a href="<?php echo URLROOT?>security/"><i class="mdi mdi-view-dashboard"></i>Ahabanza</a>
                             </li>
-                            <li >
-                                <a href="transactions.php"><i class="ion-android-social"></i>Imisanzu Yatanzwe</a>
+                            <li class="has-submenu">
+                                <a href="<?php echo URLROOT?>security/transactions/"><i class="ion-card"></i>Abishyuye Umutekano</a>
                             </li>
-                            <li>
-                                <a href="due-contributions.php"><i class="ion-android-social"></i>Abataratanga Imisanzu</a>
+                            <li class="has-submenu">
+                                <a href="<?php echo URLROOT?>security/due-contributions/"><i class="ion-cash"></i>Abatarishyura Umutekano</a>
                             </li>
-                            <li>
-                                <a href="clients.php"><i class="ion-android-social"></i>Abaturage Muri Rusange</a>
+                            <li class="has-submenu">
+                                <a href="<?php echo URLROOT?>security/client"><i class="ion-android-social"></i>Abaturage muri rusange</a>
                             </li>
                         </ul>
                         <!-- End navigation menu -->

@@ -59,7 +59,10 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li class="has-submenu">
-                                <a href="<?php echo URLROOT?>agent/"><i class="mdi mdi-view-dashboard"></i>Ahabanza</a>
+                                <a href="<?php echo URLROOT?>client/"><i class="mdi mdi-view-dashboard"></i>Ahabanza</a>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="<?php echo URLROOT?>client/contributions"><i class="ion-card"></i>Kwishyura Umusanzu</a>
                             </li>
                             <li class="has-submenu">
                                 <a href="#" id="Logout"><i class="ti-power-off m-r-5"></i>Sohoka Muri Sisiteme</a>

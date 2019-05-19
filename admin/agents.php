@@ -117,7 +117,7 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         <th>NID</th>
                                         <th>Names</th>
                                         <th>Username</th>
-                                        <th>Type</th>
+                                        <th>Position</th>
                                         <th>Code</th>
                                         <th>District</th>
                                         <th>Village</th>
@@ -136,7 +136,8 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         $AgentNID       = $agent["nid"];
                                         $AgentNames     = $agent["names"];
                                         $AgentUsername  = $agent["username"];
-                                        $AgentType      = $agent["user_type"];
+                                        $AgentPosition  = $agent["position"];
+                                        $AgentType  = $agent["type"];
                                         $AgentDistrict  = $agent["akarere"];
                                         $AgentVillage   = $agent["umurenge"];
                                         $AgentSector    = $agent["akagali"];
@@ -148,13 +149,18 @@ if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $c
                                         }else{
                                             $label = "label-warning";
                                         }
+                                        if($AgentType == 2){
+                                            $AgentType = "UMUSANZU";
+                                        }else if($AgentType == 4){
+                                            $AgentType = "UMUTEKANO";
+                                        }
                                     ?>
                                         <tr>
                                             <td><?php echo $i;?></td>
                                             <td><?php echo $AgentNID;?></td>
                                             <td><?php echo $AgentNames;?></td>
                                             <td><?php echo $AgentUsername;?></td>
-                                            <td><?php echo $AgentType;?></td>
+                                            <td><?php echo $AgentType." - ".$AgentPosition;?></td>
                                             <td><?php echo $AgentDistrict;?></td>
                                             <td><?php echo $AgentVillage;?></td>
                                             <td><?php echo $AgentSector;?></td>

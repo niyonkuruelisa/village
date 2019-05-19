@@ -26,7 +26,7 @@
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo URLROOT?>assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li class="text-center">
-                                        <h5>Hi, <?php echo NAMES;?> (Agent)</h5>
+                                        <h5>Hi, <?php echo NAMES;?> (UMUSANZU)</h5>
                                     </li>
                                     <li><a href="#" id="Profile"><i class="ti-user m-r-5"></i> My Profile</a></li>
                                     <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
@@ -62,10 +62,16 @@
                                 <a href="<?php echo URLROOT?>agent/"><i class="mdi mdi-view-dashboard"></i>Ahabanza</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="<?php echo URLROOT?>agent/addClient/"><i class="ion-android-social"></i>Andikisha Umuturage</a>
+                                <a href="<?php echo URLROOT?>agent/transactions/"><i class="ion-card"></i>Imisanzu Yatanzwe</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="<?php echo URLROOT?>agent/clients/"><i class="ti-user m-r-5"></i>Abaturage Wandikishije</a>
+                                <a href="<?php echo URLROOT?>agent/due-contributions/"><i class="ion-cash"></i>Abataratanga Imisanzu</a>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="<?php echo URLROOT?>agent/clients/"><i class="ion-android-social"></i>Abaturage Wandikishije</a>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="<?php echo URLROOT?>agent/addClient/"><i class="ion-android-social"></i>Andikisha Umuturage</a>
                             </li>
                         </ul>
                         <!-- End navigation menu -->
