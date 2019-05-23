@@ -3,7 +3,6 @@
 require_once '../bootstrap.php';
 $credentials = isLoggedIn();
 
-
 if(($credentials == null && $credentials[0] == null) || $credentials[0] != '' && $credentials[1] == '' || $credentials[2] != 0){
   redirect($credentials[0], $credentials[1], $credentials[2]);
 }else{
