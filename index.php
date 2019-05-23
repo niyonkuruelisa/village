@@ -49,7 +49,7 @@
                         <h3 class="blue-color">Ishyura Byihuse</h3>
                         <div class="space-20"></div>
                         <form id="mc-form">
-                        <span id="responses"></span>
+                            <span id="responses"></span>
                             <input type="email" class="control" id="nid" placeholder="Andika Indangamuntu Yawe hano" required="required" id="mc-email">
                             <button class="bttn-white active" id="clientLogin" type="submit"><span class="lnr lnr-location"></span>Kanda Ukomeze</button>
                             <label class="mt10" for="mc-email"></label>
@@ -162,9 +162,9 @@
                         <div class="space-20"></div>
                         <h5 class="title">Ibitwerekeye Ho</h5>
                         <div class="space-30"></div>
-                        <h3 class="blue-color">A beautiful app for consectetur adipisicing elit, sed do eiusmod tempor incididunt ut mollit anim id est laborum. Sedut perspiciatis unde omnis. </h3>
+                        <h3 class="blue-color">Tukohereza kwishyura umusanzu w'ubwitange byoroshye cyane bikorohereza kuzamura FPR</h3>
                         <div class="space-20"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiing elit, sed do eiusmod tempor incididunt ut labore et laborused sed do eiusmod tempor incididunt ut labore et laborused.</p>
+                        <p>Ba mu ba mbere mu gutanga umusanzu wawe, kuko byorohejwe kuru uru rubuga kandi byizewe n'uturere dukorana.</p>
                     </div>
                 </div>
             </div>
@@ -297,6 +297,8 @@
     </section> -->
     <!-- Testimonial-Area-End -->
     <!-- Gallery-Area -->
+    <?php
+    /*
     <section class="gallery-area section-padding" id="gallery_page">
         <div class="container-fluid">
             <div class="row">
@@ -333,7 +335,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>*/
+
+    ?>
     <!-- Gallery-Area-End -->
     <!-- How-To-Use -->
     <!-- <section class="section-padding">

@@ -1,7 +1,11 @@
-<?php require_once '../bootstrap.php';
-$credetials = isLoggedIn();
-if(($credetials == null && $credetials[0] == null) || $credetials[0] != '' && $credetials[1] == '' || $credetials[2] != 0){
-  redirect($credetials[0],$credetials[1],$credetials[2]);
+<?php
+
+require_once '../bootstrap.php';
+$credentials = isLoggedIn();
+
+
+if(($credentials == null && $credentials[0] == null) || $credentials[0] != '' && $credentials[1] == '' || $credentials[2] != 0){
+  redirect($credentials[0], $credentials[1], $credentials[2]);
 }else{
 	require 'clientOperations.php';
 }
