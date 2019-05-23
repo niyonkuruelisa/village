@@ -1,8 +1,8 @@
 <?php
 //------------------------Fetching Admin Informations ------------------------------
-if($credetials == null && $credetials[0] == null){
+if($credentials == null && $credentials[0] == null){
 
-    redirect($credetials[0],$credetials[1],$credetials[2]);
+    redirect($credentials[0],$credentials[1],$credentials[2]);
     
 }else{
 
@@ -12,7 +12,7 @@ if($credetials == null && $credetials[0] == null){
     //cfetching System users
     //$systemUsers = $db->GetRows("SELECT `system_users`.* FROM `system_users`");
     //fetching user informations
-    $email  = $credetials[0];
+    $email  = $credentials[0];
     $info   = $db->GetRow("SELECT `agents`.* FROM `agents`  WHERE `agents`.`username` = ? ",["$email"]);
 
     define("ID",$info["id"]);
