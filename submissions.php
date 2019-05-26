@@ -1,4 +1,8 @@
-<?php require_once 'bootstrap.php';
+<?php
+
+require_once 'bootstrap.php';
+
+$action = $_GET['action']??"";
 
 if(isset($_GET['action']) && $_GET['action'] == "loginSystemUser" && isset($_GET["email"]) && isset($_GET["password"])){
     SignUserIn($_GET["email"],$_GET["password"],$_GET['NID']);
@@ -33,7 +37,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveAgent" && isset($_GET['Agen
     saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentPosition,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell);
 }
 //login client
-if(isset($_GET["action"]) && $_GET["action"] == "clientLogin" && isset($_GET["nid"])){
+if($action == "clientLogin" && isset($_GET["nid"])){
     NIDAuth($_GET["nid"]);
 }
 //activate new agent
@@ -134,8 +138,10 @@ function NIDAuth($NID){
     global $db;
     if($user = $db->GetRow("SELECT * FROM `clients` WHERE (`clients`.`nid` = ?  AND `clients`.`status` = ?) ",["$NID","ACTIVE"])){
         $_SESSION['userEmail'] = $NID;
+        $_SESSION['userId'] = $user['id'];
         $_SESSION['user_password'] = 'true';
         $_SESSION['type'] = 0;
+        $_SESSION['userType'] = "client";
         echo "true";
     }else{
         echo "notExist";

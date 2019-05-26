@@ -18,7 +18,7 @@ $("#clientLogin").click(function (){
                 console.log(data);
                 $('#responses').html('');
                 if(data == "true"){
-                    location.assign(SITEURL+'client/');
+                    location.assign(SITEURL+'client/?account='+nid);
                 }else if(data == "notExist"){
                     alert("Iyi Konti Ntago Iri Muri Sisteme");
                 }else{
@@ -27,4 +27,8 @@ $("#clientLogin").click(function (){
             }
         })
     }
+})
+
+$("#quickPay").click(function(){
+    // Handles the quick payment page
 })

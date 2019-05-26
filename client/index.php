@@ -8,14 +8,25 @@ if(($credentials == null && $credentials[0] == null) || $credentials[0] != '' &&
 }else{
 	require 'clientOperations.php';
 }
+
+// Check if the current user is a client and would add further authentication or direct payment page
+$currentUserType = $credentials['userType']??"";
+$currentUserId = $credentials['userId']??"";
+
+if($currentUserType == 'client' && (!$credentials["userPassword"]) || strlen($credentials["userPassword"]) < 6){
+	//here we have to include the page
+	require "quickPay.php";
+	die();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-		<meta name="author" content="Coderthemes">
+		<meta name="description" content="Umudugudu">
+		<meta name="author" content="Village">
 
 		<link rel="shortcut icon" href="<?php echo URLROOT?>front/images/favicon.ico">
 
@@ -23,7 +34,6 @@ if(($credentials == null && $credentials[0] == null) || $credentials[0] != '' &&
 
 		<!-- App css -->
 		<?php require_once("../CSS.php")?>
-
 	</head>
 
 

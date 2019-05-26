@@ -1,19 +1,18 @@
 <?php
-session_start();
+	session_start();
 
-function isLoggedIn(){
+	function isLoggedIn(){
 
-    if(isset($_SESSION['userEmail'])){
-    	return $credentials = array($_SESSION['userEmail'], $_SESSION['user_password'], $_SESSION['type']);
+	    if(isset($_SESSION['userEmail'])){
+	    	return $credentials = array($_SESSION['userEmail'], $_SESSION['user_password'], $_SESSION['type'], 'userId'=>$_SESSION['userId'], 'userPassword' => $_SESSION['user_password'], 'userType' => $_SESSION['userType']);
+	    } else {
+	    	return null;
 
-    } else {
-    	return null;
-
-    }
-}
-
-function lockMe(){
-	if($credentials = isLoggedIn()){
-		$_SESSION['user_password'] = false;
+	    }
 	}
+
+	function lockMe(){
+		if($credentials = isLoggedIn()){
+			$_SESSION['user_password'] = false;
+		}
 }
