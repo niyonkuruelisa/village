@@ -4,7 +4,7 @@ require_once 'bootstrap.php';
 
 $action = $_GET['action']??"";
 
-if(isset($_GET['action']) && $_GET['action'] == "loginSystemUser" && isset($_GET["email"]) && isset($_GET["password"])){
+if($action == "loginSystemUser" && isset($_GET["email"]) && isset($_GET["password"])){
     SignUserIn($_GET["email"],$_GET["password"],$_GET['NID']);
 }
 //Signing User Out
@@ -13,7 +13,7 @@ if(isset($_POST["action"]) && $_POST["action"] == "SignOut"){
     echo "true";
 }
 
-if(isset($_GET['action']) && $_GET['action'] == "SaveChairman" && isset($_GET['ChairmanNID']) && isset($_GET['ChairmanNames']) && isset($_GET['ChairmanType']) && isset($_GET['ChairmanVillage']) && isset($_GET['ChairmanSector']) && isset($_GET['ChairmanCell']) ){
+if($action == "SaveChairman" && isset($_GET['ChairmanNID']) && isset($_GET['ChairmanNames']) && isset($_GET['ChairmanType']) && isset($_GET['ChairmanVillage']) && isset($_GET['ChairmanSector']) && isset($_GET['ChairmanCell']) ){
     $ChairmanNID = $_GET["ChairmanNID"];
     $ChairmanNames = $_GET["ChairmanNames"];
     $ChairmanUsername = $_GET["ChairmanUsername"];
@@ -24,7 +24,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChairman" && isset($_GET['C
     $ChairmanCell = $_GET["ChairmanCell"];
     savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType,$ChairmanDistrict,$ChairmanVillage,$ChairmanSector,$ChairmanCell);
 }
-if(isset($_GET['action']) && $_GET['action'] == "SaveAgent" && isset($_GET['AgentNID']) && isset($_GET['AgentNames']) && isset($_GET['AgentType']) && isset($_GET['AgentVillage']) && isset($_GET['AgentSector']) && isset($_GET['AgentCell']) ){
+if($action == "SaveAgent" && isset($_GET['AgentNID']) && isset($_GET['AgentNames']) && isset($_GET['AgentType']) && isset($_GET['AgentVillage']) && isset($_GET['AgentSector']) && isset($_GET['AgentCell']) ){
     $AgentNID = $_GET["AgentNID"];
     $AgentNames = $_GET["AgentNames"];
     $AgentUsername = $_GET["AgentUsername"];
@@ -41,11 +41,11 @@ if($action == "clientLogin" && isset($_GET["nid"])){
     NIDAuth($_GET["nid"]);
 }
 //activate new agent
-if(isset($_GET['action']) && $_GET['action'] == "activateUser" && isset($_GET['ActivateEmail']) && isset($_GET['ActivateCode']) && isset($_GET['ActivatePassword'])){
+if($action == "activateUser" && isset($_GET['ActivateEmail']) && isset($_GET['ActivateCode']) && isset($_GET['ActivatePassword'])){
     activate_agent($_GET['ActivateCode'],$_GET['ActivateEmail'],$_GET['ActivatePassword']);
 }
-//save a client
 
+//save a client
 if(isset($_GET['action']) && $_GET['action'] == "saveClient"  && isset($_GET['savedBy']) && isset($_GET['nid'])){
     $savedBy = $_GET["savedBy"];
     $nid = $_GET["nid"];
@@ -93,6 +93,8 @@ if(isset($_GET['action']) && $_GET['action'] == "saveClient"  && isset($_GET['sa
 if(isset($_GET['action']) && $_GET['action'] == "savePayment"  && isset($_GET['payment']) && isset($_GET['phone_number']) && isset($_GET['payment_method'])){
     savePayments($_GET['payment'],$_GET['payment_method'],$_GET['phone_number'],$_GET['Month'],$_GET['id']);
 }
+
+
 //-------------------- Functions ----------------------
 //savepayments
 function savePayments($payment,$payment_method,$phone_number,$Month,$id){
