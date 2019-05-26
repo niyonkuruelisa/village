@@ -88,6 +88,7 @@ if(isset($_GET['action']) && $_GET['action'] == "saveClient"  && isset($_GET['sa
         $cell);
 
 }
+
 //savePayment
 if(isset($_GET['action']) && $_GET['action'] == "savePayment"  && isset($_GET['payment']) && isset($_GET['phone_number']) && isset($_GET['payment_method'])){
     savePayments($_GET['payment'],$_GET['payment_method'],$_GET['phone_number'],$_GET['Month'],$_GET['id']);
@@ -147,6 +148,7 @@ function NIDAuth($NID){
         echo "notExist";
     }
 }
+
 //Activate new agent
 function saveClient(
     $savedBy,
@@ -222,7 +224,8 @@ function saveClient(
         }else{
             echo "exist";
         }
-    }
+}
+
 function activate_agent($ActivateCode,$ActivateEmail,$ActivatePassword){
 
     $hashedPassword  = hash("sha256",$ActivatePassword);
@@ -253,6 +256,7 @@ function activate_agent($ActivateCode,$ActivateEmail,$ActivatePassword){
     }
 
 }
+
 //save chairman
 function savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType,$ChairmanDistrict,$ChairmanVillage,$ChairmanSector,$ChairmanCell){
     global $db ,$function;
@@ -285,6 +289,7 @@ function savChairman($ChairmanNID,$ChairmanNames,$ChairmanUsername,$ChairmanType
         echo "existed";
     }
 }
+
 //save agent
 function saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentPosition,$AgentType,$AgentDistrict,$AgentVillage,$AgentSector,$AgentCell){
     global $db,$function;
@@ -317,6 +322,7 @@ function saveAgent($AgentNID,$AgentNames,$AgentUsername,$AgentPosition,$AgentTyp
         echo "existed";
     }
 }
+
 //signing in a System User
 function SignUserIn($userEmail,$userPassword,$NID){
     global $db;

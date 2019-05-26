@@ -54,15 +54,15 @@
 							<li style="">Irangamuntu yawe: <?=$account?></li>
 						</ul>
 						<div class="space-20"></div>
-						<form id="mc-form">                            
+						<form id="quick-pay-form">                            
 							<span id="responses"></span>
 							<div class="">
 								<input type="number" step="1" class="control form-control" id="pledge-amount" placeholder="Shyiramo amafranga uratanga" required="required" id="mc-email" max="2000000" min="200"><br/>
 							</div>
 							<div class="mt-md-2">
 								<div class="form-group">
-									<label for="inputState">Hitamo ukwezi</label>
-									<select id="inputState" class="control form-control" placeholder="Hello">
+									<label for="pledgeMonth">Hitamo ukwezi</label>
+									<select id="pledgeMonth" class="control form-control" placeholder="Hello">
 										<option selected>Hitamo ukwezi</option>
 										<?php
 											// Load months data
@@ -82,7 +82,7 @@
 							</div>
 							<div>
 								<input type="hidden" id="quick-pay-account" value="<?=$account?>">
-								<button style="position: relative;" class="bttn-white active" id="clientLogin" type="submit"><span class="lnr lnr-location"></span>Emeza</button>
+								<button style="position: relative;" class="bttn-white active" id="quick-pay-submit" type="submit"><span class="lnr lnr-location"></span>Emeza</button>
 							</div>							
 							<label class="mt10" for="mc-email"></label>
 						</form>
