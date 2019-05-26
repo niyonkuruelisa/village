@@ -40,7 +40,7 @@ $("#quick-pay-form").submit(function (e){
 
     // Check the ID
     if(nid.length < 5 || ! $.isNumeric(nid)){
-        alert("Ntabwo Washyize mo Nimero z'Indangamuntu");
+        alert("Ntabwo Washyize mo Nimero z'Indangamuntu neza");
         return false;
     }
 
@@ -83,6 +83,48 @@ $("#quick-pay-form").submit(function (e){
     })
 })
 
-$("#quickPay").click(function(){
-    // Handles the quick payment page
+// Handle the authetication
+$("#client-auth-form").submit(function (e){
+    e.preventDefault()
+    var nid = $("#client-auth-nid").val();
+    var pin = $("#client-pin-input").val();
+
+    // Check the ID
+    if(nid.length < 5 || ! $.isNumeric(nid)){
+        alert("Ntabwo Washyize mo Nimero z'Indangamuntu neza");
+        return false;
+    }
+
+    // Check amount
+    if(pin.toString().length < 2){
+        alert("PIN yanditse nabi");
+        return false;
+    }
+
+    // If no problem let's caall the API
+    $('#auth-responses').html('<div class="progress progress-lg m-b-5"><div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div></div>')
+
+    $.ajax({
+        type: 'GET',
+        url: SITEURL+"submissions.php",
+        data:
+        {
+            'action': 'clientAuthentication',
+            'nid': nid,
+            'PIN': pin
+        },
+
+        success: function(data){
+            console.log(data);
+            $('#auth-responses').html(data.msg);
+
+            var status = data.status
+
+            if(status == true){
+                // Hide the form
+                $("#client-auth-form").hide(5)
+                location.href = SITEURL + 'client';
+            }
+        }
+    })
 })

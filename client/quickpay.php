@@ -96,6 +96,43 @@
 					<div class="space-60"></div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-md-3 col-hidden-xs"></div>
+				<div class="col-xs-12 col-md-6">
+					<h1 class="wow fadeInUp" data-wow-delay="0.4s">Injira muri konti yawe</h1>
+					<!-- <div class="space-20"></div> -->
+					<div class="desc wow fadeInUp" data-wow-delay="0.6s">
+						<p>Niba ushaka kureba umusanzu n'amatangazo y'umuryango n'ibindi byinshi<br/>Shyiramo umubare wawe w'ibanga.</p>
+					</div>
+					<div class="space-20"></div>
+				
+					<div class="subscribe-form text-center" >
+						<h3 class="blue-color">Shyiramo umubare w'ibanga</h3>
+						<ul class="dark-color list-unstyled" style="">
+							<li style="">Irangamuntu yawe: <?=$account?></li>
+						</ul>
+						<div class="space-20"></div>
+						<div id="auth-responses" class="dark-color"></div>
+
+						
+						<form id="client-auth-form">
+							<div class="">
+								<input type="number" step="1" class="control form-control" id="client-pin-input" placeholder="umubare w'ibanga" required="required"><br/>
+							</div>
+							<div>
+								<input type="hidden" id="client-auth-nid" value="<?=$account?>">
+								<button style="position: relative;" class="bttn-white active" id="quick-pay-submisst" type="submit"><span class="lnr lnr-location"></span>Injira</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-3 col-hidden-xs"></div>
+
+				<div class="col-md-12 col-hidden-sm">
+					<div class="space-60"></div>
+				</div>
+			</div>
 		</div>
 	</header>
 

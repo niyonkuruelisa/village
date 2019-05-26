@@ -107,6 +107,9 @@ if($action == 'quickPay'){
     // Client data
     $clientData = getClient($NID);
 
+    // client ID
+    $clientId = $clientData['id'];
+    
     // if phone number is not set, we use users'
     if(!$phoneNumber){
         $phoneNumber = $clientData['telephone'];
@@ -118,10 +121,48 @@ if($action == 'quickPay'){
     // Check if the NID exists
     if($clientData){
         // Here we can proceed
-        $paymentDetail = savePayments($amount, "MOMO", $phoneNumber, $month, $NID, 'return');
+        $paymentDetail = savePayments($amount, "MOMO", $phoneNumber, $month, $clientId, 'return');
 
         $response['status'] = true;
         $response['msg'] = "Urakoze. Emeza na PIN yawe kuri MTN mobile money - $phoneNumber\nNiba nta kimenyetso kigusaba PIN kuri telefone yawe kanda *182*7# wemeze";
+    }else{
+        $response['status'] = false;
+        $response['msg'] = "Irangamuntu yawe ntiyanditse muri sisitemu";
+    }
+
+    // Respond with JSON
+    header("Content-Type: application/json");
+    echo json_encode($response);
+}
+
+
+// Client authentication
+if($action == 'clientAuthentication'){
+    // Quick payment
+    $NID = $_GET['nid'];
+    $PIN = $_GET['PIN'];
+
+    // Client data
+    $clientData = getClient($NID);
+
+    // Check if the NID exists
+    if($clientData){
+        // Here we can proceed
+        if($user = $db->GetRow("SELECT * FROM `clients` WHERE (`clients`.`nid` = ?  AND `clients`.`pin` = ?  AND `clients`.`status` = ?) ",["$NID", "$PIN", "ACTIVE"])){
+            $_SESSION['userEmail'] = $NID;
+            $_SESSION['userId'] = $user['id'];
+            $_SESSION['user_password'] = $user['PIN'];
+            $_SESSION['type'] = 'client';
+            $_SESSION['userType'] = "client";
+            $_SESSION['loggedIn'] = true;
+
+            // sucess
+            $response['status'] = true;
+            $response['msg'] = "Murakaza neza";
+        }else{
+            $response['status'] = false;
+            $response['msg'] = "PIN yawe cyangwa Irangamuntu byanditse nabi kandi sibyo\nGenzura neza wongere ugerageze";
+        }
     }else{
         $response['status'] = false;
         $response['msg'] = "Irangamuntu yawe ntiyanditse muri sisitemu";

@@ -13,7 +13,7 @@ if(($credentials == null && $credentials[0] == null) || $credentials[0] != '' &&
 $currentUserType = $credentials['userType']??"";
 $currentUserId = $credentials['userId']??"";
 
-if($currentUserType == 'client' && (!$credentials["userPassword"]) || strlen($credentials["userPassword"]) < 6){
+if($currentUserType == 'client' && !$credentials['loggedIn']??false){
 	//here we have to include the page
 	require "quickPay.php";
 	die();
