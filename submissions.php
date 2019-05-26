@@ -95,9 +95,46 @@ if(isset($_GET['action']) && $_GET['action'] == "savePayment"  && isset($_GET['p
 }
 
 
+// Quick payment
+if($action == 'quickPay'){
+    // Quick payment
+    $NID = $_GET['nid'];
+    $amount = $_GET['amount'];
+    $month = $_GET['month'];
+
+    $phoneNumber = $_GET['phoneNumber']??"";
+
+    // Client data
+    $clientData = getClient($NID);
+
+    // if phone number is not set, we use users'
+    if(!$phoneNumber){
+        $phoneNumber = $clientData['telephone'];
+    }
+
+    // Reposnse
+    $response = array();
+
+    // Check if the NID exists
+    if($clientData){
+        // Here we can proceed
+        $paymentDetail = savePayments($amount, "MOMO", $phoneNumber, $month, $NID, 'return');
+
+        $response['status'] = true;
+        $response['msg'] = "Urakoze. Emeza na PIN yawe kuri MTN mobile money - $phoneNumber\nNiba nta kimenyetso kigusaba PIN kuri telefone yawe kanda *182*7# wemeze";
+    }else{
+        $response['status'] = false;
+        $response['msg'] = "Irangamuntu yawe ntiyanditse muri sisitemu";
+    }
+
+    // Respond with JSON
+    header("Content-Type: application/json");
+    echo json_encode($response);
+}
+
 //-------------------- Functions ----------------------
 //savepayments
-function savePayments($payment,$payment_method,$phone_number,$Month,$id){
+function savePayments($payment,$payment_method,$phone_number,$Month,$id, $outputOption='echo'){
     global $db, $function;
     if($db->InsertData("INSERT INTO `transactions` (
         `id`, 
@@ -113,7 +150,6 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
         ,["","$id","$payment","$payment_method","$phone_number","$Month","PENDING"])){
             
             $transactionID = $db->getLastId();
-
             $ret = $function->MTNDeposit($phone_number, $payment);
 
             $status = $ret->data->status;
@@ -131,11 +167,17 @@ function savePayments($payment,$payment_method,$phone_number,$Month,$id){
             }
 
             //TODO: Implement messages on the progress and failures
-            echo $response;
+            if($outputOption == 'echo'){
+                echo $response;
+            }else if($outputOption == 'return'){
+                return $response;
+            }
+            
     }else{
         echo "failed";
     }
 }
+
 //authenticate nid
 function NIDAuth($NID){
     global $db;
@@ -150,6 +192,20 @@ function NIDAuth($NID){
         echo "notExist";
     }
 }
+
+// Get client details with NID
+function getClient($NID){
+    global $db;
+    if($user = $db->GetRow("SELECT * FROM `clients` WHERE (`clients`.`nid` = ?  AND `clients`.`status` = ?) ",["$NID","ACTIVE"])){
+        $response = $user;
+    }else{
+        $Reposnse = false;
+    }
+
+    return $response;
+}
+
+
 
 //Activate new agent
 function saveClient(

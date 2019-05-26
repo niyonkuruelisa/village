@@ -31,10 +31,12 @@ $("#clientLogin").click(function (){
 
 
 // Handle the submission of the QUICK payment page
-$("#quick-pay-form").submit(function (){
-    var nid = $("#nid").val();
+$("#quick-pay-form").submit(function (e){
+    e.preventDefault()
+    var nid = $("#quick-pay-nid").val();
     var amount = $("#pledge-amount").val();
     var month = $("#pledgeMonth").val();
+    var phone = $("#phone-number").val();
 
     // Check the ID
     if(nid.length < 5 || ! $.isNumeric(nid)){
@@ -43,13 +45,13 @@ $("#quick-pay-form").submit(function (){
     }
 
     // Check amount
-    if($.isNumeric(amount) && amount >= 100 && amount <= 2500000 ){
+    if(isNaN(amount) || amount < 100 || amount > 2500000 ){
         alert("Mwashyizemo amafranga nabi\nShyiramo amafranga neza kandi ari hagati y'ijana na miliyoni ebyiri");
         return false;
     }
 
      // Check month
-    if($.isNumeric(month) && month >= 1 && month <= 12 ){
+    if(isNaN(month) || month < 1 || month > 12 ){
         alert("Mwashyizemo ukwezi nabi\nHitamo ukwezi hagati 1-12");
         return false;
     }
@@ -64,17 +66,18 @@ $("#quick-pay-form").submit(function (){
             'action': 'quickPay',
             'nid': nid,
             'amount': amount,
-            'month': month
+            'month': month,
+            'phoneNumber': phone
         },
         success: function(data){
             console.log(data);
-            $('#responses').html('');
-            if(data == "true"){
-                location.assign(SITEURL+'client/?account='+nid);
-            }else if(data == "notExist"){
-                alert("Iyi Konti Ntago Iri Muri Sisteme");
-            }else{
-                alert("Ntago Byakunze Kwinjira,Mwongere Mugerageza Mukanya");
+            $('#responses').html(data.msg);
+
+            var status = data.status
+
+            if(status == true){
+                // Hide the form
+                $("#quick-pay-form").hide(5)
             }
         }
     })

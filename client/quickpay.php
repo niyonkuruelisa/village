@@ -54,8 +54,10 @@
 							<li style="">Irangamuntu yawe: <?=$account?></li>
 						</ul>
 						<div class="space-20"></div>
-						<form id="quick-pay-form">                            
-							<span id="responses"></span>
+						<div id="responses" class="dark-color"></div>
+
+						
+						<form id="quick-pay-form">
 							<div class="">
 								<input type="number" step="1" class="control form-control" id="pledge-amount" placeholder="Shyiramo amafranga uratanga" required="required" id="mc-email" max="2000000" min="200"><br/>
 							</div>
@@ -77,12 +79,12 @@
 								</div>								
 							</div>
 							<div class="mb-2">
-								<input type="number" step="1" class="control mt-4" id="pledge-amount" placeholder="Shyiramo number ivanwaho amafranga" required="required" id="mc-charge-phone"><br/>
+								<input type="number" step="1" class="control mt-4" id="phone-number" placeholder="Shyiramo number ivanwaho amafranga" required="required" id="mc-charge-phone"><br/>
 								<label for="mc-charge-phone" class="dark-color"><small><span>*</span> Simbuka aha niba ushaka gukoresha numero yanditse kuri konti yawe</small></label>
 							</div>
 							<div>
-								<input type="hidden" id="quick-pay-account" value="<?=$account?>">
-								<button style="position: relative;" class="bttn-white active" id="quick-pay-submit" type="submit"><span class="lnr lnr-location"></span>Emeza</button>
+								<input type="hidden" id="quick-pay-nid" value="<?=$account?>">
+								<button style="position: relative;" class="bttn-white active" id="quick-pay-submisst" type="submit"><span class="lnr lnr-location"></span>Emeza</button>
 							</div>							
 							<label class="mt10" for="mc-email"></label>
 						</form>
