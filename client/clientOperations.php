@@ -26,7 +26,7 @@ if($credentials == null && $credentials[0] == null){
     define("STATUS",$info["status"]);
     define("REG_DATE",$info["created_at"]);
     
-    $transactions = $db->GetRows("SELECT `transactions`.* FROM `transactions` WHERE `transactions`.`client_id` = ? ",[ID]);
+    $transactions = $db->GetRows("SELECT `transactions`.* FROM `transactions` WHERE `transactions`.`client_id` = ? ORDER BY updated_at DESC",[ID]);
     
     // $clients = $db->GetRows("SELECT `clients`.* FROM `clients` WHERE `clients`.`created_by` = ? ",[ID]);
     // $totalClients = count($clients);

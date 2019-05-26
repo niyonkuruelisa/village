@@ -121,7 +121,7 @@ if($action == 'quickPay'){
     // Check if the NID exists
     if($clientData){
         // Here we can proceed
-        $paymentDetail = savePayments($amount, "MOMO", $phoneNumber, $month, $clientId, 'return');
+        $paymentDetail = savePayments($amount, "MTN Mobile Money", $phoneNumber, $month, $clientId, 'return');
 
         $response['status'] = true;
         $response['msg'] = "Urakoze. Emeza na PIN yawe kuri MTN mobile money - $phoneNumber\nNiba nta kimenyetso kigusaba PIN kuri telefone yawe kanda *182*7# wemeze";
