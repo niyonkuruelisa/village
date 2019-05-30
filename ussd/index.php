@@ -67,7 +67,7 @@ if(isset($requests[$nrequests-1]) && ($requests[$nrequests-1] == "#")){
 }
 
 if($nrequests == 0 || $text == ''){
-	$response = "CON Welcome to village\nChoose language\n1. Ikinyarwanda\n2. English";
+	$response = "CON Murakaza neza\nHitamo ururimi\n1. Ikinyarwanda\n2. English";
 }else if ($nrequests >= 1) {
 	//language choice
 	$frequest = $requests[0];
@@ -99,9 +99,13 @@ if($nrequests == 0 || $text == ''){
 					//Contribute cash
 					$response.= "CON ".getString('enter_amount')."\n";					
 				}else if($val == 2){
+					$response.= "END Biracyari gutegurwa\n";
 					//My account
+				}else if($val ==3){
+					// Change the current NID
+					$response .= "CON ".getString("enter_nid_tochange")."";
 				}else{
-					$response.= "END Your choice is invalid\n#. Exit"; 
+					$response.= "END Your choice is invalid\n"; 
 				}
 			}else{
 				$trequest = $requests[2]; //third request
