@@ -1,5 +1,4 @@
 <?php
-
 	// Simple page redirect
 	function redirect($userEmail,$password,$type){
 		

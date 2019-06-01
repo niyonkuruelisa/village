@@ -133,5 +133,4 @@ class Database{
 }
 //defining Database() Class instance
 $db  = new Database();
-
 ?>

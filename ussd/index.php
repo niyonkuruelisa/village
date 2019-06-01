@@ -1,10 +1,13 @@
 <?php
+include_once '../app/config.php';
 include_once 'db.php';
+include_once '../app/Database.php';
 include_once 'functions.php';
+include_once '../app/web_functions.php';
 //include_once '../../scripts/class.payment.php';
 // header("Content-Type: text/plain");
 
-session_start(); //For web testing only
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 //For browser-based testing
@@ -28,6 +31,12 @@ $text        = $req["text"]??null;
 //CLEAN and sanitize PHONE
 $phoneNumber  = preg_replace( '/[^0-9]/', '', $phoneNumber );
 $phoneNumber  = substr($phoneNumber, -10);
+
+// Get the userID of this phone number
+$clientId = $Web->getPhoneClientId($phoneNumber);
+
+// Set a session with userID
+$_SESSION['userId'] = $clientId;
 
 //get user language
 $lang = getLang($phoneNumber);
@@ -61,9 +70,25 @@ $ntemp = is_int($ntemp)?$ntemp:0;
 $backString = goback(); //string for go back indication
 $footer = getFooter(); //string for footer
 
+
+// // Check if the set home session is set so we can take user to homepage of his language
+// if(!empty($_SESSION['takehome']) && $_SESSION['takehome'] == true){
+// 	// Destroy the session to avoid coming back here over and over
+// 	unset($_SESSION['takehome']);
+// 	$text = "1";
+
+
+
+// 	$nrequests = 1; //Number of requests
+	
+// }
+
 //If last request is hash, then user should go back to home
-if(isset($requests[$nrequests-1]) && ($requests[$nrequests-1] == "#")){
+if(isset($requests[$nrequests-1]) && ($requests[$nrequests-1] == "#") || (!empty($_SESSION['takehome']) && $_SESSION['takehome'] == true)){
 	$text="";
+
+	// remove any takehome session
+	unset($_SESSION['takehome']);
 }
 
 if($nrequests == 0 || $text == ''){
@@ -92,8 +117,7 @@ if($nrequests == 0 || $text == ''){
 			//further requests were issued
 			$cplate = $srequest = strtoupper($requests[1]); //second request
 			if($nrequests == 2){
-				//validating plate
-				$val = validatePlate($cplate);
+				//process the first menu
 				$val = $srequest;
 				if($val == 1){
 					//Contribute cash
@@ -157,6 +181,24 @@ if($nrequests == 0 || $text == ''){
 					 
 				}else if($trequest == '2'){
 					$response.= "END Your phone number is: $phoneNumber\nLanguage is $lang\nThank you";
+				}else if($requests[1] == '3'){
+					$NID = $requests[2];
+
+					// Try to get the ID client
+					$clientId = $Web->getNIDClientId($NID);
+					if($clientId){
+						// Id is accoiated with the user
+						$response.= "CON Irangamuntu washyizemo ni: $NID\n1.Komeza";
+
+						// Here take to previous session
+						$_SESSION['userId'] = $clientId;
+						$_SESSION['takehome'] = true; //Indicate the take back
+
+					}else{
+						$response.= "CON Irangamuntu washyizemo ntiyanditse mu banyamuryango\nIyandikishe ku muryango cyangwa ushyiremo irangamuntu yanditse";
+					}
+
+					
 				}else{
 					$response.= "END Incorrect choice"; 
 				}

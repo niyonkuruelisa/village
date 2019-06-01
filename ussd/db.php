@@ -1,4 +1,3 @@
 <?php
-	$db = $conn = new mysqli("localhost", "clement", "clement123" , "insureme");
-	$con = new mysqli("localhost", "clement", "clement123" , "insureme");
+	$conn = $con = new mysqli(DB_HOST, DB_USER, DB_PASS , DB_NAME);
 ?>
